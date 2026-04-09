@@ -510,6 +510,39 @@
     color: var(--accent);
   }
 
+  /* RESUME SECTION */
+  .resume-section {
+    text-align: center;
+  }
+  .resume-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.0;
+    margin-bottom: 32px;
+  }
+  .resume-headline em { font-style: italic; color: var(--accent); }
+  .resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 14px 32px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0;
+  }
+  .resume-btn:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+  }
+
   /* CONTACT */
   .contact-inner {
     display: grid;
@@ -919,39 +952,11 @@
 
 <div class="section-divider"></div>
 
-<!-- PROFESSIONAL SUMMARY -->
-<section id="summary">
-  <p class="section-label">Professional Summary</p>
-  <div class="about-grid">
-    <div class="about-body reveal">
-      <p>
-        <strong>MSc Management candidate</strong> at the University of Birmingham with hands-on experience across brand marketing, digital content, business operations, and financial analysis. Founded a social media marketing agency (Escalate) from the ground up, demonstrating entrepreneurial drive that complements strong academic grounding.
-      </p>
-      <p>
-        <strong>Key expertise:</strong> Blending data insight with creative strategy to deliver measurable brand and business outcomes. Proven ability to lead workflow optimization (20% efficiency improvement), conduct sustainability assessments, and manage complex client relationships across multiple industries.
-      </p>
-      <p>
-        <strong>Background:</strong> Experienced in brand positioning, campaign strategy, SEO content creation, paid social advertising, financial reporting, and cross-functional collaboration. Selected as Canva Ambassador for the University of Birmingham, demonstrating strong influence and community-building capabilities.
-      </p>
-      <p>
-        <strong>Professional standing:</strong> Eligible to work full-time in the UK on the Graduate Route visa. Seeking roles that value strategic thinking, data-driven decision-making, and authentic brand storytelling.
-      </p>
-    </div>
-    <div class="about-body reveal">
-      <p>
-        <strong>Education:</strong> MSc in Management (2025–2026), BBA First Division from Panjab University (2022–2025)
-      </p>
-      <p>
-        <strong>Certifications:</strong> Social Media Marketing (YouVah) · Data Analytics Career Skills (LinkedIn Learning) · Instagram Marketing · Big Data Analytics Solutions
-      </p>
-      <p>
-        <strong>Languages:</strong> English (Fluent) · Hindi (Fluent) · French (Basic)
-      </p>
-      <p>
-        <strong>Additional achievements:</strong> 1st Place – National Dance Competition · MUN – International Conferences (Russia & Switzerland) · Academic Excellence Scholar · Certified Scuba Diver
-      </p>
-    </div>
-  </div>
+<!-- RESUME -->
+<section id="resume" class="resume-section">
+  <p class="section-label">Resume</p>
+  <h2 class="resume-headline reveal">Download<br>my <em>resume</em></h2>
+  <a href="resume.pdf" download class="resume-btn reveal">Download Resume ↓</a>
 </section>
 
 <div class="section-divider"></div>
