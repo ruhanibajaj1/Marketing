@@ -126,11 +126,7 @@
     transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .nav-links a:hover {
-    color: var(--primary);
-    transform: translateY(-2px);
-  }
-
+  .nav-links a:hover { color: var(--primary); transform: translateY(-2px); }
   .nav-links a:hover::before { width: 100%; }
 
   .hero {
@@ -153,11 +149,7 @@
   .parallax-layer-1 { z-index: 0; opacity: 0.3; }
   .parallax-layer-2 { z-index: 1; opacity: 0.2; }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
 
   .hero-tag {
     font-size: 14px;
@@ -167,7 +159,6 @@
     letter-spacing: 4px;
     margin-bottom: 32px;
     animation: slideInLeft 0.8s ease 0.1s both;
-    position: relative;
   }
 
   .hero-tag::before {
@@ -355,9 +346,9 @@
     animation: slideInUp 0.8s ease forwards;
   }
 
-  .about-text:nth-child(2) { animation-delay: .2s; }
-  .about-text:nth-child(3) { animation-delay: .4s; }
-  .about-text:nth-child(4) { animation-delay: .6s; }
+  .about-text:nth-child(2) { animation-delay: 0.2s; }
+  .about-text:nth-child(3) { animation-delay: 0.4s; }
+  .about-text:nth-child(4) { animation-delay: 0.6s; }
 
   .stats-grid {
     display: grid;
@@ -712,16 +703,10 @@
     section { padding: 80px 28px; }
     .hero { padding: 100px 28px 60px; }
 
-    .hero-buttons {
-      flex-direction: column;
-      width: 100%;
-    }
+    .hero-buttons { flex-direction: column; width: 100%; }
 
     .hero-cta,
-    .resume-btn {
-      width: 100%;
-      justify-content: center;
-    }
+    .resume-btn { width: 100%; justify-content: center; }
 
     .about-grid,
     .contact-content {
@@ -738,7 +723,6 @@
 </style>
 </head>
 <body>
-
 <div id="webgl-container"></div>
 
 <div class="cursor" id="cursor"></div>
@@ -776,6 +760,7 @@
 
   <section id="about">
     <h2 class="section-title" id="aboutTitle">About Me</h2>
+
     <div class="about-grid">
       <div class="about-content">
         <h3>Strategy-led.<br><span class="highlight">Story-driven.</span><br>People-first.</h3>
@@ -783,6 +768,7 @@
         <p class="about-text">Currently pursuing my MSc in Management at the University of Birmingham while representing Canva as a Gen C Ambassador. My background spans brand marketing, digital content, business operations, and financial analysis.</p>
         <p class="about-text">I'm drawn to organizations with genuine stories to tell — where creativity, strategy, and community matter as much as conversion metrics.</p>
       </div>
+
       <div class="reveal">
         <div class="stats-grid">
           <div class="stat-card reveal"><div class="stat-number">3+</div><div class="stat-label">Years in Marketing</div></div>
@@ -798,8 +784,8 @@
 
   <section id="experience">
     <h2 class="section-title" id="expTitle">Professional Journey</h2>
-    <div class="experience-list">
 
+    <div class="experience-list">
       <div class="experience-item reveal">
         <div class="exp-company">Canva</div>
         <div class="exp-role">Brand Ambassador</div>
@@ -860,7 +846,6 @@
           <span class="tag">Campaign Analytics</span>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -895,7 +880,6 @@
   <section id="skills">
     <h2 class="section-title" id="skillsTitle">Core Skills</h2>
     <div class="skills-grid">
-
       <div class="skill-category reveal">
         <div class="skill-cat-title">Brand & Marketing</div>
         <div class="skill-list">
@@ -958,7 +942,6 @@
           <div class="skill-item">French (Basic)</div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -966,10 +949,12 @@
 
   <section id="contact">
     <h2 class="section-title" id="contactTitle">Get In Touch</h2>
+
     <div class="contact-content">
       <div class="contact-text reveal">
         Let's <span class="highlight">collaborate</span> and create something amazing.
       </div>
+
       <div class="contact-links reveal">
         <a href="mailto:ruhanibajaj1@gmail.com" class="contact-link">
           <div>
@@ -1008,7 +993,6 @@
 </div>
 
 <script>
-  // 3D WebGL background
   let scene, camera, renderer, particles, torusKnot;
 
   function initWebGL() {
@@ -1113,7 +1097,6 @@
 
   initWebGL();
 
-  // Cursor + magnetic + parallax
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   const cursorInner = document.getElementById('cursorInner');
@@ -1160,7 +1143,6 @@
   }
   animateRing();
 
-  // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -1173,7 +1155,6 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Scroll sound
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
   let lastScrollTime = 0;
 
@@ -1211,11 +1192,11 @@
 
     osc1.start(audioContext.currentTime);
     osc1.stop(audioContext.currentTime + 0.2);
+
     osc2.start(audioContext.currentTime);
     osc2.stop(audioContext.currentTime + 0.2);
   }
 
-  // In-text transitions (excluding hero title to preserve <br>)
   function animateText(elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
@@ -1238,7 +1219,6 @@
   animateText('skillsTitle');
   animateText('contactTitle');
 
-  // Scroll parallax effect
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
 
