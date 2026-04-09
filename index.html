@@ -1,61 +1,407 @@
-<!-- ABOUT -->
-<section id="about">
-  <h2 class="section-title">About <span class="highlight">Me</span></h2>
-  ...
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruhani Bajaj — Strategy × Marketing × Operations</title>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <h2 class="section-title">Professional <span class="highlight">Journey</span></h2>
-  ...
-</section>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- WORK -->
-<section id="work">
-  <h2 class="section-title">Selected <span class="highlight">Work</span></h2>
-  ...
-</section>
+  <style>
+    :root {
+      --primary: #FFD600;
+      --dark: #0a0a0a;
+      --surface: #151515;
+      --surface-2: #1c1c1c;
+      --text: #ffffff;
+      --muted: #a0a0a0;
+      --border: rgba(255, 214, 0, 0.35);
+    }
 
-<!-- SKILLS -->
-<section id="skills">
-  <h2 class="section-title">Core <span class="highlight">Skills</span></h2>
-  ...
-</section>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: radial-gradient(circle at 20% 10%, rgba(255,214,0,0.10), transparent 35%),
+                  radial-gradient(circle at 80% 80%, rgba(255,214,0,0.08), transparent 40%),
+                  var(--dark);
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+    /* Cursor */
+    .cursor, .cursor-ring {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      mix-blend-mode: screen;
+    }
+    .cursor {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--primary);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px rgba(255,214,0,.7);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2px solid rgba(255,214,0,.8);
+      transform: translate(-50%, -50%);
+      opacity: .7;
+    }
 
-  <div class="contact-content">
-    <div class="contact-text reveal">
-      Let's <span class="highlight">collaborate</span> and create something amazing.
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 48px;
+      background: rgba(10,10,10,.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: "Clash Display", sans-serif;
+      font-size: 22px; font-weight: 700; letter-spacing: 2px; color: var(--primary);
+    }
+    .nav-links { display: flex; list-style: none; gap: 34px; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-weight: 600; font-size: 13px;
+      letter-spacing: .08em; text-transform: uppercase;
+      transition: .25s ease;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    section { padding: 110px 48px 80px; position: relative; }
+    .hero {
+      min-height: 100vh; display: grid; align-items: center;
+      padding-top: 130px;
+    }
+    .hero-tag {
+      color: var(--primary); letter-spacing: .2em; text-transform: uppercase;
+      font-size: 12px; font-weight: 700; margin-bottom: 18px;
+    }
+    .hero-title {
+      font-family: "Clash Display", sans-serif;
+      font-size: clamp(46px, 9vw, 108px);
+      line-height: .95; margin-bottom: 18px;
+    }
+    .hero-title .hl { color: var(--primary); }
+    .hero-sub {
+      max-width: 700px; color: var(--muted); line-height: 1.85; font-size: 17px;
+      margin-bottom: 34px;
+    }
+    .cta {
+      display: inline-block; padding: 14px 24px; text-decoration: none;
+      background: var(--primary); color: #111; font-weight: 700; font-size: 13px;
+      text-transform: uppercase; letter-spacing: .12em;
+      transition: .25s ease;
+    }
+    .cta:hover { transform: translateY(-2px) scale(1.02); }
+
+    .divider {
+      height: 1px; margin: 0 48px; background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .section-title {
+      font-family: "Clash Display", sans-serif;
+      font-size: clamp(28px, 6vw, 56px); /* reduced size */
+      line-height: 1.05;
+      margin-bottom: 54px;
+    }
+    .section-title .highlight { color: var(--primary); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1.15fr .85fr; gap: 42px;
+    }
+    .about-copy p {
+      color: var(--muted); line-height: 1.9; margin-bottom: 16px; font-size: 15px;
+    }
+
+    .stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .stat {
+      border: 1px solid var(--border); background: rgba(255,214,0,.06);
+      padding: 18px;
+    }
+    .stat .num {
+      font-family: "Clash Display", sans-serif; font-size: 36px; color: var(--primary);
+      line-height: 1;
+    }
+    .stat .lbl {
+      margin-top: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    }
+
+    .list { display: grid; gap: 16px; }
+    .item {
+      border: 1px solid var(--border);
+      padding: 22px; background: linear-gradient(135deg, rgba(255,214,0,.08), rgba(255,214,0,.02));
+    }
+    .item .company {
+      font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--primary); font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .item .role {
+      font-family: "Clash Display", sans-serif; font-size: 26px; margin-bottom: 6px;
+    }
+    .item .period { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+    .item .desc { color: var(--muted); line-height: 1.8; font-size: 14px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .chip {
+      border: 1px solid var(--border); color: var(--primary);
+      font-size: 10px; letter-spacing: .09em; text-transform: uppercase;
+      padding: 6px 10px;
+      background: rgba(255,214,0,.06);
+    }
+
+    .work-grid, .skills-grid {
+      display: grid; gap: 16px;
+    }
+    .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .work-card {
+      aspect-ratio: 1/1; border: 1px solid var(--border);
+      background: radial-gradient(circle at 30% 20%, rgba(255,214,0,.18), rgba(255,214,0,.03));
+      display: grid; place-content: center; text-align: center;
+      transition: .25s ease;
+    }
+    .work-card:hover { transform: translateY(-6px) rotate(-1deg); }
+    .work-card h4 { font-family: "Clash Display", sans-serif; font-size: 28px; }
+    .work-card p { color: var(--primary); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-top: 8px; }
+
+    .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .skill-col {
+      border: 1px solid var(--border); padding: 20px; background: var(--surface);
+    }
+    .skill-col h4 {
+      color: var(--primary); font-size: 12px; text-transform: uppercase; letter-spacing: .14em;
+      margin-bottom: 14px;
+    }
+    .skill-col ul { list-style: none; display: grid; gap: 8px; }
+    .skill-col li { color: var(--muted); font-size: 14px; }
+
+    .contact-grid {
+      display: grid; grid-template-columns: .95fr 1.05fr; gap: 32px; align-items: center;
+    }
+    .contact-big {
+      font-family: "Clash Display", sans-serif;
+      font-size: clamp(34px, 7vw, 72px); line-height: .98;
+    }
+    .contact-big .highlight { color: var(--primary); }
+
+    .contact-links { display: grid; gap: 8px; }
+    .contact-link {
+      display: flex; justify-content: space-between; align-items: center;
+      text-decoration: none; color: var(--text);
+      border: 1px solid var(--border); padding: 16px 18px;
+      background: var(--surface-2);
+      transition: .25s ease;
+    }
+    .contact-link:hover { transform: translateX(6px); }
+    .contact-link .label {
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px;
+    }
+    .contact-link .value { font-size: 15px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px 40px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    }
+    footer p { color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+
+    @media (max-width: 980px) {
+      nav { padding: 18px 22px; }
+      .nav-links { display: none; }
+      section { padding: 90px 22px 64px; }
+      .divider { margin: 0 22px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { padding: 24px 22px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <div class="logo">RUHANI</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <p class="hero-tag">Strategy × Marketing × Operations</p>
+      <h1 class="hero-title">Building brands<br>& <span class="hl">bold ideas</span></h1>
+      <p class="hero-sub">
+        MSc Management candidate blending data insight with creative strategy. I help brands grow through intelligent marketing, operational excellence, and stories that connect.
+      </p>
+      <a class="cta" href="#contact">Let’s Collaborate ↓</a>
     </div>
+  </section>
 
-    <div class="contact-links reveal">
-      <a href="mailto:ruhanibajaj1@gmail.com" class="contact-link">
-        <div>
-          <div class="contact-link-label">Email</div>
-          <div class="contact-link-value">ruhanibajaj1@gmail.com</div>
-        </div>
-        <span class="contact-link-arrow">↗</span>
-      </a>
+  <div class="divider"></div>
 
-      <!-- UPDATED LINKEDIN -->
-      <a href="https://www.linkedin.com/in/ruhani-bajaj-rb" target="_blank" class="contact-link">
-        <div>
-          <div class="contact-link-label">LinkedIn</div>
-          <div class="contact-link-value">www.linkedin.com/in/ruhani-bajaj-rb</div>
-        </div>
-        <span class="contact-link-arrow">↗</span>
-      </a>
-
-      <a href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" class="contact-link">
-        <div>
-          <div class="contact-link-label">Agency Website</div>
-          <div class="contact-link-value">escalate.co.in</div>
-        </div>
-        <span class="contact-link-arrow">↗</span>
-      </a>
+  <section id="about">
+    <h2 class="section-title">About <span class="highlight">Me</span></h2>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>I’m a marketer and strategist who started by building something from zero — Escalate, a social media agency for SMEs, taught me that real growth starts with understanding people.</p>
+        <p>Currently pursuing MSc Management at the University of Birmingham while representing Canva as a Gen C Ambassador. My background spans brand marketing, digital content, business operations, and financial analysis.</p>
+        <p>I’m drawn to organizations with genuine stories to tell — where creativity, strategy, and community matter as much as conversion.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num">3+</div><div class="lbl">Years in Marketing</div></div>
+        <div class="stat"><div class="num">10+</div><div class="lbl">SEO Blogs Published</div></div>
+        <div class="stat"><div class="num">2</div><div class="lbl">Countries Worked In</div></div>
+        <div class="stat"><div class="num">∞</div><div class="lbl">Ideas Per Day</div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="experience">
+    <h2 class="section-title">Professional <span class="highlight">Journey</span></h2>
+    <div class="list">
+      <article class="item">
+        <div class="company">Canva</div>
+        <div class="role">Brand Ambassador</div>
+        <div class="period">Mar 2026 – Present</div>
+        <p class="desc">Selected as a Gen C Canva Ambassador at the University of Birmingham — running activations, demos, and community initiatives. Providing structured product feedback to the Canva team.</p>
+        <div class="chips"><span class="chip">Brand Representation</span><span class="chip">Community Building</span><span class="chip">Product Feedback</span></div>
+      </article>
+
+      <article class="item">
+        <div class="company">Escalate — Social Media Agency</div>
+        <div class="role">Co-Founder & Strategy Lead</div>
+        <div class="period">2023 – Present</div>
+        <p class="desc">Built a boutique digital marketing agency from the ground up, delivering content strategy, paid social, and influencer campaigns for SMEs across industries.</p>
+        <div class="chips"><span class="chip">Agency Founding</span><span class="chip">Paid Social</span><span class="chip">Client Strategy</span><span class="chip">Content Workflows</span></div>
+      </article>
+
+      <article class="item">
+        <div class="company">Assam Wood and Allied Products</div>
+        <div class="role">Operations, Sustainability & Accounts Intern</div>
+        <div class="period">Jul 2024 – Dec 2024</div>
+        <p class="desc">Led workflow optimisation initiatives contributing to a 20% improvement in operational efficiency. Conducted sustainability assessments and prepared financial reports.</p>
+        <div class="chips"><span class="chip">Operations</span><span class="chip">Sustainability</span><span class="chip">Financial Analysis</span></div>
+      </article>
+
+      <article class="item">
+        <div class="company">Silver Fern Education Consultants</div>
+        <div class="role">Marketing & Content Intern</div>
+        <div class="period">Jun – Sep 2025</div>
+        <p class="desc">Authored 10+ SEO-optimised blogs and produced 30+ social posts. Analysed platform metrics to align content with audience behaviour and business goals.</p>
+        <div class="chips"><span class="chip">SEO Writing</span><span class="chip">Social Media</span><span class="chip">Analytics</span></div>
+      </article>
+
+      <article class="item">
+        <div class="company">YouVah</div>
+        <div class="role">Social Media Marketing Intern</div>
+        <div class="period">Apr – Jun 2024</div>
+        <p class="desc">Developed platform-specific strategies across Instagram, LinkedIn, and Twitter. Monitored analytics and compiled performance summaries for optimisation.</p>
+        <div class="chips"><span class="chip">Instagram</span><span class="chip">LinkedIn</span><span class="chip">Campaign Analytics</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="work">
+    <h2 class="section-title">Selected <span class="highlight">Work</span></h2>
+    <div class="work-grid">
+      <div class="work-card"><div><h4>Escalate</h4><p>Social Content Strategy</p></div></div>
+      <div class="work-card"><div><h4>SEO Content</h4><p>Educational Blogs</p></div></div>
+      <div class="work-card"><div><h4>Canva</h4><p>Brand Activation</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="skills">
+    <h2 class="section-title">Core <span class="highlight">Skills</span></h2>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h4>Brand & Marketing</h4>
+        <ul><li>Brand Positioning</li><li>Campaign Strategy</li><li>Consumer Insight</li><li>Growth Marketing</li><li>Brand Storytelling</li></ul>
+      </div>
+      <div class="skill-col">
+        <h4>Digital & Content</h4>
+        <ul><li>SEO Writing</li><li>Social Media Strategy</li><li>Paid Social</li><li>Influencer Marketing</li><li>Content Calendars</li><li>Analytics</li></ul>
+      </div>
+      <div class="skill-col">
+        <h4>Sales & Consultancy</h4>
+        <ul><li>Client Acquisition</li><li>Market Research</li><li>Competitive Analysis</li><li>Stakeholder Management</li><li>Client Pitching</li></ul>
+      </div>
+      <div class="skill-col">
+        <h4>Operations & Strategy</h4>
+        <ul><li>Operations Management</li><li>Sustainability</li><li>Financial Analysis</li><li>Workflow Optimization</li></ul>
+      </div>
+      <div class="skill-col">
+        <h4>Tools & Platforms</h4>
+        <ul><li>Excel</li><li>Google Analytics</li><li>Meta Business Suite</li><li>Canva</li></ul>
+      </div>
+      <div class="skill-col">
+        <h4>Languages</h4>
+        <ul><li>English (Fluent)</li><li>Hindi (Fluent)</li><li>French (Basic)</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact">
+    <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+    <div class="contact-grid">
+      <h3 class="contact-big">Let’s <span class="highlight">collaborate</span><br>and create.</h3>
+
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:ruhanibajaj1@gmail.com">
+          <div><div class="label">Email</div><div class="value">ruhanibajaj1@gmail.com</div></div>
+          <span>↗</span>
+        </a>
+
+        <a class="contact-link" href="https://www.linkedin.com/in/ruhani-bajaj-rb" target="_blank">
+          <div><div class="label">LinkedIn</div><div class="value">www.linkedin.com/in/ruhani-bajaj-rb</div></div>
+          <span>↗</span>
+        </a>
+
+        <a class="contact-link" href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank">
+          <div><div class="label">Agency Website</div><div class="value">escalate.co.in</div></div>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Ruhani Bajaj</p>
+    <p>Strategy × Marketing × Operations · Birmingham, UK</p>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let x=0,y=0,rx=0,ry=0;
+
+    document.addEventListener('mousemove', (e) => {
+      x = e.clientX; y = e.clientY;
+      cursor.style.transform = `translate(${x-6}px, ${y-6}px)`;
+    });
+
+    function loop() {
+      rx += (x-rx)*0.14;
+      ry += (y-ry)*0.14;
+      ring.style.transform = `translate(${rx-18}px, ${ry-18}px)`;
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>
