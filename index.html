@@ -3,1219 +3,968 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ruhani Bajaj — Strategy, Marketing & Operations</title>
+<title>Ruhani Bajaj — Strategy & Operations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0a;
-    --surface: #111111;
-    --surface2: #181818;
-    --border: #232323;
-    --accent: #b8cdd9;
-    --accent2: #7fa8be;
-    --text: #e8e2d9;
-    --muted: #666;
-    --muted2: #444;
-    --white: #f5f0eb;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-dark: #0a0d14;
+    --bg-light: #0f1419;
+    --surface: #141b24;
+    --surface-light: #1a2332;
+    --accent-blue: #4a9eff;
+    --accent-cyan: #00d4ff;
+    --text-primary: #e8eef5;
+    --text-secondary: #8a95aa;
+    --frost: rgba(255, 255, 255, 0.05);
+  }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
+    line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
   }
 
   /* CUSTOM CURSOR */
   .cursor {
-    width: 8px; height: 8px;
-    background: var(--accent);
+    width: 12px;
+    height: 12px;
+    background: var(--accent-cyan);
     border-radius: 50%;
-    position: fixed; top: 0; left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.15s ease;
-    mix-blend-mode: difference;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    mix-blend-mode: screen;
   }
+
   .cursor-ring {
-    width: 32px; height: 32px;
-    border: 1px solid var(--accent2);
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--accent-blue);
     border-radius: 50%;
-    position: fixed; top: 0; left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     pointer-events: none;
     z-index: 9998;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
     opacity: 0.5;
+    transition: opacity 0.3s;
   }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    padding: 28px 60px;
+    padding: 32px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+    background: rgba(10, 13, 20, 0.4);
+    border-bottom: 1px solid var(--frost);
   }
+
   .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .nav-links {
-    display: flex; gap: 40px; list-style: none;
-  }
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--muted);
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
     text-decoration: none;
+    position: relative;
     transition: color 0.3s;
   }
-  .nav-links a:hover { color: var(--accent); }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-cyan);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent-cyan);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
 
   /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 60px 80px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 60px;
     position: relative;
     overflow: hidden;
   }
 
-  .hero-bg-text {
+  .hero::before {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: -20px;
-    transform: translateY(-50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(120px, 18vw, 280px);
-    font-weight: 300;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--border);
-    line-height: 0.85;
-    pointer-events: none;
-    user-select: none;
-    white-space: nowrap;
-    animation: fadeInSlow 2s ease forwards;
-    opacity: 0;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(74, 158, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(-30px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    animation: slideUp 1s ease-out 0.3s both;
   }
 
   .hero-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    color: var(--accent2);
+    font-size: 13px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
     opacity: 0;
-    animation: slideUp 0.8s ease 0.3s forwards;
+    animation: slideUp 0.8s ease-out 0.5s both;
   }
 
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 8vw, 110px);
-    font-weight: 300;
-    line-height: 0.9;
-    color: var(--white);
-    letter-spacing: -0.02em;
+  .hero-title {
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: var(--text-primary);
     opacity: 0;
-    animation: slideUp 0.8s ease 0.5s forwards;
+    animation: slideUp 0.8s ease-out 0.7s both;
   }
 
-  .hero-name em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    margin-top: 28px;
-    max-width: 520px;
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--muted);
-    font-weight: 300;
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin-bottom: 50px;
+    line-height: 1.8;
     opacity: 0;
-    animation: slideUp 0.8s ease 0.7s forwards;
-  }
-
-  .hero-bottom {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-top: 52px;
-    opacity: 0;
-    animation: slideUp 0.8s ease 0.9s forwards;
+    animation: slideUp 0.8s ease-out 0.9s both;
   }
 
   .hero-cta {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bg);
-    background: var(--accent);
-    padding: 14px 28px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    color: var(--bg-dark);
     text-decoration: none;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-  }
-  .hero-cta:hover {
-    background: var(--white);
-    transform: translateY(-2px);
-  }
-
-  .hero-scroll {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--muted2);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero-scroll::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--muted2);
-    animation: lineExpand 1.5s ease 1.5s both;
-  }
-
-  .hero-line {
-    position: absolute;
-    right: 60px;
-    bottom: 80px;
-    width: 1px;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, var(--muted2));
-    animation: fadeInSlow 1s ease 1.5s forwards;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
     opacity: 0;
+    animation: slideUp 0.8s ease-out 1.1s both;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* DIVIDER */
-  .section-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 60px;
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
   }
 
-  /* SECTION SHELL */
+  .hero-cta:hover::before {
+    opacity: 1;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* SECTION */
   section {
-    padding: 100px 60px;
+    padding: 120px 60px;
+    position: relative;
   }
 
   .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.3em;
+    font-size: 12px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent2);
+    color: var(--accent-cyan);
     margin-bottom: 60px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
   }
+
   .section-label::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: var(--border);
+    background: linear-gradient(90deg, var(--accent-blue), transparent);
     max-width: 200px;
   }
 
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .about-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(34px, 4vw, 56px);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--white);
-  }
-  .about-headline em { font-style: italic; color: var(--accent); }
-  .about-body {
-    font-size: 15px;
-    line-height: 1.85;
-    color: var(--muted);
-    font-weight: 300;
-  }
-  .about-body p + p { margin-top: 20px; }
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-top: 48px;
-  }
-  .stat {
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-  }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-top: 6px;
+  /* GLASS CARD */
+  .glass-card {
+    background: var(--frost);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* WORK */
-  .work-item {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 40px;
-    align-items: start;
-    padding: 48px 0;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    transition: all 0.3s ease;
-  }
-  .work-item:first-of-type { border-top: 1px solid var(--border); }
-  .work-item:hover { padding-left: 16px; }
-  .work-item::before {
+  .glass-card::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 2px;
-    background: var(--accent);
-    transform: scaleY(0);
-    transition: transform 0.3s ease;
-    transform-origin: top;
-  }
-  .work-item:hover::before { transform: scaleY(1); }
-
-  .work-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted2);
-    letter-spacing: 0.1em;
-    padding-top: 4px;
-  }
-  .work-role {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 400;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-  .work-company {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent2);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .work-desc {
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--muted);
-    max-width: 560px;
-  }
-  .work-year {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted2);
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    padding-top: 4px;
-  }
-  .work-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-  }
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    padding: 5px 10px;
-  }
-
-  /* WORK SAMPLES */
-  .samples-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-bottom: 60px;
-  }
-  .sample-card {
-    background: var(--surface);
-    aspect-ratio: 1;
-    overflow: hidden;
-    position: relative;
-    cursor: none;
-  }
-  .sample-card img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    filter: grayscale(20%);
-  }
-  .sample-card:hover img {
-    transform: scale(1.05);
-    filter: grayscale(0%);
-  }
-  .sample-overlay {
-    position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), transparent);
     opacity: 0;
-    transition: opacity 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-  }
-  .sample-card:hover .sample-overlay { opacity: 1; }
-  .sample-overlay-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
+    transition: opacity 0.4s;
   }
 
-  .blogs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+  .glass-card:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateY(-5px);
   }
-  .blog-card {
-    background: var(--surface);
-    padding: 36px 32px;
-    text-decoration: none;
-    display: block;
+
+  .glass-card:hover::before {
+    opacity: 1;
+  }
+
+  .glass-card > * {
     position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    border-bottom: 2px solid transparent;
-  }
-  .blog-card:hover {
-    background: var(--surface2);
-    border-bottom-color: var(--accent);
-  }
-  .blog-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted2);
-    margin-bottom: 20px;
-  }
-  .blog-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--white);
-    line-height: 1.3;
-    margin-bottom: 16px;
-    transition: color 0.3s;
-  }
-  .blog-card:hover .blog-title { color: var(--accent); }
-  .blog-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--muted2);
-    text-transform: uppercase;
-  }
-  .blog-arrow {
-    position: absolute;
-    bottom: 28px; right: 28px;
-    font-size: 18px;
-    color: var(--muted2);
-    transition: all 0.3s;
-  }
-  .blog-card:hover .blog-arrow {
-    color: var(--accent);
-    transform: translate(4px, -4px);
+    z-index: 1;
   }
 
-  /* SKILLS */
-  .skills-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 80px;
+  /* EXPERIENCE */
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 20px;
   }
-  .skills-intro {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--white);
-    position: sticky;
-    top: 120px;
+
+  .exp-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
   }
-  .skills-intro em { font-style: italic; color: var(--accent); }
-  .skills-categories { display: flex; flex-direction: column; gap: 40px; }
-  .skills-cat-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
+
+  .exp-company {
+    font-size: 13px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 16px;
+    color: var(--accent-blue);
   }
-  .skills-list {
+
+  .exp-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+
+  .exp-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
   }
-  .skill-pill {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 8px 16px;
-    transition: all 0.2s;
+
+  .tag {
+    font-size: 11px;
+    padding: 6px 12px;
+    background: rgba(74, 158, 255, 0.1);
+    border: 1px solid rgba(74, 158, 255, 0.3);
+    border-radius: 4px;
+    color: var(--accent-blue);
+    letter-spacing: 0.05em;
   }
-  .skill-pill:hover {
-    background: var(--surface2);
-    border-color: var(--accent2);
-    color: var(--accent);
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .skill-category {
+    background: var(--frost);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.4s;
+  }
+
+  .skill-category:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateY(-5px);
+  }
+
+  .skill-category-title {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-item {
+    font-size: 12px;
+    padding: 6px 12px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 4px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .skill-item:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.6);
+  }
+
+  /* DOWNLOAD RESUME */
+  .resume-section {
+    text-align: center;
+  }
+
+  .resume-headline {
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 600;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    color: var(--bg-dark);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .resume-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .resume-btn:hover::before {
+    opacity: 1;
+  }
+
+  .resume-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
   }
 
   /* CONTACT */
-  .contact-inner {
+  .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .contact-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 5vw, 72px);
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1.0;
-  }
-  .contact-headline em { font-style: italic; color: var(--accent); }
-  .contact-links {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    margin-top: 50px;
   }
-  .contact-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
+
+  .contact-card {
+    background: var(--frost);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
     text-decoration: none;
-    color: var(--muted);
-    transition: color 0.3s;
-    font-size: 14px;
-    font-weight: 300;
+    color: inherit;
+    transition: all 0.4s;
   }
-  .contact-link:hover { color: var(--white); }
-  .contact-link-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
+
+  .contact-card:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateY(-5px);
+  }
+
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--muted2);
-    margin-bottom: 4px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
   }
-  .contact-link-value { font-size: 15px; }
+
+  .contact-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent-cyan);
+  }
 
   /* FOOTER */
   footer {
-    padding: 40px 60px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--muted2);
-    text-transform: uppercase;
+    padding: 60px;
+    text-align: center;
+    border-top: 1px solid var(--frost);
+    background: rgba(0, 0, 0, 0.2);
   }
 
-  /* ANIMATIONS */
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeInSlow {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes lineExpand {
-    from { width: 0; }
-    to { width: 40px; }
+  .footer-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
   }
 
-  /* SCROLL REVEAL */
+  /* REVEAL ANIMATION */
   .reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(30px);
   }
+
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
   }
 
   /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 24px 28px; }
-    .nav-links { display: none; }
-    section { padding: 72px 28px; }
-    .hero { padding: 0 28px 60px; }
-    .section-divider { margin: 0 28px; }
-    footer { padding: 32px 28px; }
-    .about-grid, .skills-layout, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-    .samples-grid { grid-template-columns: 1fr 1fr; }
-    .blogs-grid { grid-template-columns: 1fr; }
-    .work-item { grid-template-columns: 50px 1fr; }
-    .work-year { display: none; }
-    .skills-intro { position: static; }
-    .about-stats { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 30px;
+    }
+
+    .nav-links {
+      gap: 25px;
+      font-size: 10px;
+    }
+
+    .hero {
+      padding: 0 30px;
+      padding-top: 120px;
+    }
+
+    section {
+      padding: 80px 30px;
+    }
+
+    .glass-card {
+      padding: 25px;
+    }
+
+    .exp-header {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
 
+<!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
 <nav>
-  <span class="nav-logo">RB · Portfolio</span>
+  <div class="nav-logo">RB</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-bg-text">Ruhani</div>
-  <div class="hero-line"></div>
-
-  <p class="hero-tag">Strategy, Marketing & Operations · Birmingham, UK</p>
-  <h1 class="hero-name">Ruhani<br><em>Bajaj</em></h1>
-  <p class="hero-sub">
-    MSc Management candidate with hands-on experience across brand marketing, digital content, business operations, and financial analysis. I help organizations blend data insight with creative strategy.
-  </p>
-  <div class="hero-bottom">
-    <button id="downloadResumeBtn" class="hero-cta">View Resume ↓</button>
-    <span class="hero-scroll">Scroll to explore</span>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Strategy · Marketing · Operations</div>
+    <h1 class="hero-title">Ruhani Bajaj</h1>
+    <p class="hero-subtitle">MSc Management candidate blending data insight with creative strategy. Building brands that tell stories worth telling.</p>
+    <button id="downloadResumeBtn" class="hero-cta">Download Resume ↓</button>
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label">About</p>
-  <div class="about-grid">
-    <div>
-      <h2 class="about-headline reveal">Strategy-led.<br><em>Data-driven.</em><br>People-first.</h2>
-      <div class="about-stats reveal">
-        <div class="stat">
-          <div class="stat-num">3+</div>
-          <div class="stat-label">Years in Marketing</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">10+</div>
-          <div class="stat-label">SEO Blogs Published</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Countries Worked In</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">20%</div>
-          <div class="stat-label">Efficiency Improvement</div>
-        </div>
-      </div>
-    </div>
-    <div class="about-body reveal">
-      <p>
-        I'm a strategist who started by building something from scratch — Escalate, a social media agency for SMEs, taught me that real marketing is part psychology, part craft, and entirely about understanding people.
-      </p>
-      <p>
-        Since then I've worked across sectors: education consultancy, sustainability operations, and now campus brand representation for Canva at the University of Birmingham. My MSc in Management sharpens the strategic side of everything I do.
-      </p>
-      <p>
-        I'm drawn to organizations with genuine stories to tell — the kind where creativity, data, and community matter as much as conversion.
-      </p>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <p class="section-label">Experience</p>
+  <div class="section-label">Experience</div>
 
-  <div class="work-item reveal">
-    <span class="work-num">01</span>
-    <div>
-      <div class="work-role">Brand Ambassador</div>
-      <div class="work-company">Canva</div>
-      <p class="work-desc">Selected as a Gen C Canva Ambassador at the University of Birmingham — running activations, demos, and community initiatives. Testing early-stage products and relaying structured feedback directly to the product team.</p>
-      <div class="work-tags">
-        <span class="tag">Brand Representation</span>
-        <span class="tag">Community Building</span>
-        <span class="tag">Product Feedback</span>
+  <div class="glass-card reveal">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Brand Ambassador</div>
+        <div class="exp-company">Canva</div>
+        <div class="exp-date">Mar 2026 – Present</div>
       </div>
     </div>
-    <span class="work-year">Mar 2026 – Present</span>
+    <p class="exp-desc">Selected as a Gen C Canva Ambassador at the University of Birmingham — running activations, demos, and community initiatives. Testing early-stage products and relaying structured feedback directly to the product team.</p>
+    <div class="exp-tags">
+      <span class="tag">Brand Representation</span>
+      <span class="tag">Community Building</span>
+      <span class="tag">Product Feedback</span>
+    </div>
   </div>
 
-  <div class="work-item reveal">
-    <span class="work-num">02</span>
-    <div>
-      <div class="work-role">Co-Founder & Strategy Lead</div>
-      <div class="work-company">Escalate — Social Media Agency</div>
-      <p class="work-desc">Founded a boutique agency delivering content strategy, paid social advertising, and influencer campaigns for SMEs across multiple industries. Managed full client lifecycle from pitch through retention, building scalable content workflows.</p>
-      <div class="work-tags">
-        <span class="tag">Agency Founding</span>
-        <span class="tag">Paid Social</span>
-        <span class="tag">Client Strategy</span>
-        <span class="tag">Content Workflows</span>
+  <div class="glass-card reveal">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Co-Founder & Strategy Lead</div>
+        <div class="exp-company">Escalate — Social Media Agency</div>
+        <div class="exp-date">2023 – Present</div>
       </div>
     </div>
-    <span class="work-year">2023 – Present</span>
+    <p class="exp-desc">Founded a boutique agency delivering content strategy, paid social advertising, and influencer campaigns for SMEs across multiple industries. Managed full client lifecycle from pitch through retention, building scalable content workflows.</p>
+    <div class="exp-tags">
+      <span class="tag">Agency Founding</span>
+      <span class="tag">Paid Social</span>
+      <span class="tag">Client Strategy</span>
+      <span class="tag">Content Workflows</span>
+    </div>
   </div>
 
-  <div class="work-item reveal">
-    <span class="work-num">03</span>
-    <div>
-      <div class="work-role">Operations, Sustainability & Accounts Intern</div>
-      <div class="work-company">Assam Wood and Allied Products</div>
-      <p class="work-desc">Led workflow optimization initiatives contributing to 20% improvement in operational efficiency. Conducted sustainability assessments and presented eco-friendly initiatives; two proposals were formally adopted by management.</p>
-      <div class="work-tags">
-        <span class="tag">Operations</span>
-        <span class="tag">Sustainability</span>
-        <span class="tag">Financial Analysis</span>
+  <div class="glass-card reveal">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Operations, Sustainability & Accounts Intern</div>
+        <div class="exp-company">Assam Wood and Allied Products</div>
+        <div class="exp-date">Jul – Dec 2024</div>
       </div>
     </div>
-    <span class="work-year">Jul – Dec 2024</span>
+    <p class="exp-desc">Led workflow optimization initiatives contributing to 20% improvement in operational efficiency. Conducted sustainability assessments and presented eco-friendly initiatives; two proposals were formally adopted by management.</p>
+    <div class="exp-tags">
+      <span class="tag">Operations</span>
+      <span class="tag">Sustainability</span>
+      <span class="tag">Financial Analysis</span>
+    </div>
   </div>
 
-  <div class="work-item reveal">
-    <span class="work-num">04</span>
-    <div>
-      <div class="work-role">Marketing & Content Intern</div>
-      <div class="work-company">Silver Fern Education Consultants</div>
-      <p class="work-desc">Authored 10+ SEO-optimised blogs and produced 30+ social media posts across Instagram and Facebook. Analysed platform analytics to align content strategy with audience behaviour and business goals.</p>
-      <div class="work-tags">
-        <span class="tag">SEO Writing</span>
-        <span class="tag">Social Media</span>
-        <span class="tag">Analytics</span>
+  <div class="glass-card reveal">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Marketing & Content Intern</div>
+        <div class="exp-company">Silver Fern Education Consultants</div>
+        <div class="exp-date">Jun – Sep 2025</div>
       </div>
     </div>
-    <span class="work-year">Jun – Sep 2025</span>
+    <p class="exp-desc">Authored 10+ SEO-optimised blogs and produced 30+ social media posts across Instagram and Facebook. Analysed platform analytics to align content strategy with audience behaviour and business goals.</p>
+    <div class="exp-tags">
+      <span class="tag">SEO Writing</span>
+      <span class="tag">Social Media</span>
+      <span class="tag">Analytics</span>
+    </div>
   </div>
 
-  <div class="work-item reveal">
-    <span class="work-num">05</span>
-    <div>
-      <div class="work-role">Social Media Marketing Intern</div>
-      <div class="work-company">YouVah</div>
-      <p class="work-desc">Developed platform-specific content strategies across Instagram, LinkedIn, and Twitter to drive brand visibility and audience engagement. Monitored campaign analytics and compiled performance summaries for ongoing optimization.</p>
-      <div class="work-tags">
-        <span class="tag">Instagram</span>
-        <span class="tag">LinkedIn</span>
-        <span class="tag">Campaign Analytics</span>
+  <div class="glass-card reveal">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Social Media Marketing Intern</div>
+        <div class="exp-company">YouVah</div>
+        <div class="exp-date">Apr – Jun 2024</div>
       </div>
     </div>
-    <span class="work-year">Apr – Jun 2024</span>
+    <p class="exp-desc">Developed platform-specific content strategies across Instagram, LinkedIn, and Twitter to drive brand visibility and audience engagement. Monitored campaign analytics and compiled performance summaries for ongoing optimization.</p>
+    <div class="exp-tags">
+      <span class="tag">Instagram</span>
+      <span class="tag">LinkedIn</span>
+      <span class="tag">Campaign Analytics</span>
+    </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- WORK SAMPLES -->
-<section id="work">
-  <p class="section-label">Work Samples</p>
-
-  <div class="samples-grid reveal">
-    <div class="sample-card">
-      <img src="https://ruhanibajaj1.wixsite.com/mysite" alt="Escalate social post" 
-        onerror="this.parentElement.style.background='#181818'; this.style.display='none'">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;">
-        <div style="text-align:center;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#b8cdd9;font-weight:300;margin-bottom:8px;">Mastering<br><em>Branding</em></div>
-          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:#444;text-transform:uppercase;">Escalate · Social Content</div>
-        </div>
-      </div>
-      <div class="sample-overlay"><span class="sample-overlay-text">Social Content · Escalate</span></div>
-    </div>
-    <div class="sample-card">
-      <div style="position:absolute;inset:0;background:#111;display:flex;align-items:center;justify-content:center;padding:24px;">
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.3em;color:#7fa8be;text-transform:uppercase;margin-bottom:12px;">Unlocking</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:38px;color:#f5f0eb;font-weight:300;line-height:1.1;">The Power<br>Of <em style="color:#b8cdd9;">SEO</em></div>
-          <div style="width:40px;height:1px;background:#333;margin:16px auto;"></div>
-          <div style="font-family:'DM Mono',monospace;font-size:9px;color:#444;letter-spacing:0.1em;">Search Engine Optimisation</div>
-        </div>
-      </div>
-      <div class="sample-overlay"><span class="sample-overlay-text">Educational Content · Escalate</span></div>
-    </div>
-    <div class="sample-card">
-      <div style="position:absolute;inset:0;background:#0d0d0d;display:flex;align-items:center;justify-content:center;padding:24px;border:1px solid #1a1a1a;">
-        <div>
-          <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:22px;color:#e8e2d9;margin-bottom:8px;">DID YOU<br>KNOW?</div>
-          <div style="font-family:'Outfit',sans-serif;font-size:13px;color:#666;line-height:1.6;">All You Need Is A Digital Push...</div>
-          <div style="margin-top:20px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;color:#333;text-transform:uppercase;">@escalate.co.in</div>
-        </div>
-      </div>
-      <div class="sample-overlay"><span class="sample-overlay-text">Brand Awareness · Escalate</span></div>
-    </div>
-  </div>
-
-  <p class="section-label" style="margin-top:80px;">Blog Writing — Silver Fern Education</p>
-
-  <div class="blogs-grid">
-    <a href="https://thesfedu.com/why-psychometric-testing-is-essential-for-choosing-career-paths/" target="_blank" class="blog-card reveal">
-      <div class="blog-num">01</div>
-      <div class="blog-title">Why Psychometric Testing Is Essential For Choosing Career Paths</div>
-      <div class="blog-meta">Silver Fern · SEO Blog</div>
-      <span class="blog-arrow">↗</span>
-    </a>
-    <a href="https://thesfedu.com/why-career-counselling-in-class-9th-isnt-too-early-but-essential/" target="_blank" class="blog-card reveal">
-      <div class="blog-num">02</div>
-      <div class="blog-title">Why Career Counselling in Class 9th Isn't Too Early — But Essential</div>
-      <div class="blog-meta">Silver Fern · SEO Blog</div>
-      <span class="blog-arrow">↗</span>
-    </a>
-    <a href="https://thesfedu.com/why-global-exposure-matters-for-your-childs-future/" target="_blank" class="blog-card reveal">
-      <div class="blog-num">03</div>
-      <div class="blog-title">Why Global Exposure Matters For Your Child's Future</div>
-      <div class="blog-meta">Silver Fern · SEO Blog</div>
-      <span class="blog-arrow">↗</span>
-    </a>
-    <a href="https://thesfedu.com/best-short-term-courses-for-an-outstanding-resume/" target="_blank" class="blog-card reveal">
-      <div class="blog-num">04</div>
-      <div class="blog-title">Best Short-Term Courses For an Outstanding Resume</div>
-      <div class="blog-meta">Silver Fern · SEO Blog</div>
-      <span class="blog-arrow">↗</span>
-    </a>
-    <a href="https://thesfedu.com/pros-cons-challenges-is-studying-abroad-worth-it/" target="_blank" class="blog-card reveal">
-      <div class="blog-num">05</div>
-      <div class="blog-title">Pros, Cons & Challenges: Is Studying Abroad Worth It?</div>
-      <div class="blog-meta">Silver Fern · SEO Blog</div>
-      <span class="blog-arrow">↗</span>
-    </a>
-    <a href="https://thesfedu.com/how-psychometric-testing-leads-to-effective-career-planning/" target="_blank" class="blog-card reveal">
-      <div class="blog-num">06</div>
-      <div class="blog-title">How Psychometric Testing Leads To Effective Career Planning</div>
-      <div class="blog-meta">Silver Fern · SEO Blog</div>
-      <span class="blog-arrow">↗</span>
-    </a>
-  </div>
-
-  <div style="margin-top:24px;padding:28px 32px;background:var(--surface);border-left:2px solid var(--accent2);display:inline-block;" class="reveal">
-    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--accent2);text-transform:uppercase;margin-bottom:8px;">Agency Website</div>
-    <a href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);text-decoration:none;">Escalate · escalate.co.in ↗</a>
-  </div>
-</section>
-
-<div class="section-divider"></div>
 
 <!-- SKILLS -->
 <section id="skills">
-  <p class="section-label">Skills</p>
-  <div class="skills-layout">
-    <div class="skills-intro reveal">What I<br>bring<br><em>to the table.</em></div>
-    <div class="skills-categories">
-      <div class="reveal">
-        <div class="skills-cat-title">Brand & Marketing</div>
-        <div class="skills-list">
-          <span class="skill-pill">Brand Positioning</span>
-          <span class="skill-pill">Campaign Strategy</span>
-          <span class="skill-pill">Consumer Insight</span>
-          <span class="skill-pill">Brand Storytelling</span>
-          <span class="skill-pill">Growth Marketing</span>
-        </div>
+  <div class="section-label">Skills & Expertise</div>
+
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-category-title">Brand & Marketing</div>
+      <div class="skill-items">
+        <span class="skill-item">Brand Positioning</span>
+        <span class="skill-item">Campaign Strategy</span>
+        <span class="skill-item">Consumer Insight</span>
+        <span class="skill-item">Brand Storytelling</span>
+        <span class="skill-item">Growth Marketing</span>
       </div>
-      <div class="reveal">
-        <div class="skills-cat-title">Digital & Content</div>
-        <div class="skills-list">
-          <span class="skill-pill">SEO Writing</span>
-          <span class="skill-pill">Social Media Strategy</span>
-          <span class="skill-pill">Paid Social</span>
-          <span class="skill-pill">Influencer Marketing</span>
-          <span class="skill-pill">Content Calendars</span>
-          <span class="skill-pill">Analytics</span>
-        </div>
+    </div>
+
+    <div class="skill-category reveal">
+      <div class="skill-category-title">Digital & Content</div>
+      <div class="skill-items">
+        <span class="skill-item">SEO Writing</span>
+        <span class="skill-item">Social Media Strategy</span>
+        <span class="skill-item">Paid Social</span>
+        <span class="skill-item">Influencer Marketing</span>
+        <span class="skill-item">Content Calendars</span>
+        <span class="skill-item">Analytics</span>
       </div>
-      <div class="reveal">
-        <div class="skills-cat-title">Sales & Consultancy</div>
-        <div class="skills-list">
-          <span class="skill-pill">Client Acquisition</span>
-          <span class="skill-pill">Market Research</span>
-          <span class="skill-pill">Competitive Analysis</span>
-          <span class="skill-pill">Stakeholder Management</span>
-          <span class="skill-pill">Client Pitching</span>
-        </div>
+    </div>
+
+    <div class="skill-category reveal">
+      <div class="skill-category-title">Sales & Consultancy</div>
+      <div class="skill-items">
+        <span class="skill-item">Client Acquisition</span>
+        <span class="skill-item">Market Research</span>
+        <span class="skill-item">Competitive Analysis</span>
+        <span class="skill-item">Stakeholder Management</span>
+        <span class="skill-item">Client Pitching</span>
       </div>
-      <div class="reveal">
-        <div class="skills-cat-title">Tools & Platforms</div>
-        <div class="skills-list">
-          <span class="skill-pill">Canva</span>
-          <span class="skill-pill">Meta Business Suite</span>
-          <span class="skill-pill">Google Analytics</span>
-          <span class="skill-pill">Excel</span>
-        </div>
+    </div>
+
+    <div class="skill-category reveal">
+      <div class="skill-category-title">Tools & Platforms</div>
+      <div class="skill-items">
+        <span class="skill-item">Canva</span>
+        <span class="skill-item">Meta Business Suite</span>
+        <span class="skill-item">Google Analytics</span>
+        <span class="skill-item">Excel</span>
       </div>
-      <div class="reveal">
-        <div class="skills-cat-title">Luxury & Consumer</div>
-        <div class="skills-list">
-          <span class="skill-pill">Premium Brand Identity</span>
-          <span class="skill-pill">Trend Forecasting</span>
-          <span class="skill-pill">E-Commerce Strategy</span>
-          <span class="skill-pill">Visual Merchandising</span>
-        </div>
+    </div>
+
+    <div class="skill-category reveal">
+      <div class="skill-category-title">Luxury & Consumer</div>
+      <div class="skill-items">
+        <span class="skill-item">Premium Brand Identity</span>
+        <span class="skill-item">Trend Forecasting</span>
+        <span class="skill-item">E-Commerce Strategy</span>
+        <span class="skill-item">Visual Merchandising</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- RESUME -->
+<section id="resume" class="resume-section">
+  <div class="section-label" style="justify-content: center;">Resume</div>
+  <h2 class="resume-headline">Download My Resume</h2>
+  <button id="downloadResumeBtnMain" class="resume-btn">Download Resume ↓</button>
+</section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label">Contact</p>
-  <div class="contact-inner">
-    <h2 class="contact-headline reveal">Let's<br><em>work</em><br>together.</h2>
-    <div class="contact-links reveal">
-      <a href="mailto:ruhanibajaj1@gmail.com" class="contact-link">
-        <div>
-          <div class="contact-link-label">Email</div>
-          <div class="contact-link-value">ruhanibajaj1@gmail.com</div>
-        </div>
-        <span>↗</span>
-      </a>
-      <a href="https://linkedin.com/in/ruhani-bajajrb" target="_blank" class="contact-link">
-        <div>
-          <div class="contact-link-label">LinkedIn</div>
-          <div class="contact-link-value">linkedin.com/in/ruhani-bajajrb</div>
-        </div>
-        <span>↗</span>
-      </a>
-      <a href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" class="contact-link">
-        <div>
-          <div class="contact-link-label">Agency Website</div>
-          <div class="contact-link-value">escalate.co.in</div>
-        </div>
-        <span>↗</span>
-      </a>
-    </div>
+  <div class="section-label">Get In Touch</div>
+
+  <div class="contact-grid">
+    <a href="mailto:ruhanibajaj1@gmail.com" class="contact-card reveal">
+      <div class="contact-label">Email</div>
+      <div class="contact-value">ruhanibajaj1@gmail.com</div>
+    </a>
+
+    <a href="https://linkedin.com/in/ruhani-bajajrb" target="_blank" class="contact-card reveal">
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-value">ruhani-bajajrb</div>
+    </a>
+
+    <a href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" class="contact-card reveal">
+      <div class="contact-label">Agency Website</div>
+      <div class="contact-value">escalate.co.in</div>
+    </a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Ruhani Bajaj</p>
-  <p>Strategy, Marketing & Operations · Birmingham, UK</p>
+  <p class="footer-text">© 2026 Ruhani Bajaj · Strategy, Marketing & Operations</p>
 </footer>
 
 <script>
-  // Cursor
+  // CUSTOM CURSOR
   const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+  const cursorRing = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 6}px, ${mouseY - 6}px)`;
   });
+
   function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.transform = `translate(${rx - 16}px, ${ry - 16}px)`;
+    ringX += (mouseX - ringX) * 0.2;
+    ringY += (mouseY - ringY) * 0.2;
+    cursorRing.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
     requestAnimationFrame(animateRing);
   }
   animateRing();
 
-  // Scroll reveal
+  // REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
   }, { threshold: 0.1 });
-  reveals.forEach(el => obs.observe(el));
 
-  // Download Resume Direct
-  const downloadResumeBtn = document.getElementById('downloadResumeBtn');
-  downloadResumeBtn.addEventListener('click', function() {
+  reveals.forEach((el) => observer.observe(el));
+
+  // DOWNLOAD RESUME
+  function downloadResume() {
     const resumeHTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ruhani Bajaj — Resume</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
---ink: #1a1714;
---ink-mid: #4a4540;
---ink-muted: #8a8480;
---rule: #d8d2c8;
---accent: #b5813a;
---accent-light: #f5ede0;
---bg: #faf8f4;
---white: #ffffff;
+--bg: #0a0d14;
+--surface: #141b24;
+--accent-blue: #4a9eff;
+--accent-cyan: #00d4ff;
+--text-primary: #e8eef5;
+--text-secondary: #8a95aa;
 }
 body {
-font-family: 'DM Sans', sans-serif;
+font-family: 'Inter', sans-serif;
 font-weight: 300;
-background: var(--bg);
-color: var(--ink);
-line-height: 1.6;
+background: linear-gradient(135deg, var(--bg) 0%, #0f1419 100%);
+color: var(--text-primary);
+line-height: 1.7;
 }
 .page {
-max-width: 860px;
-margin: 48px auto;
-background: var(--white);
-padding: 64px 72px;
-border: 1px solid var(--rule);
+max-width: 900px;
+margin: 50px auto;
+background: rgba(20, 27, 36, 0.5);
+backdrop-filter: blur(10px);
+padding: 60px 50px;
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 12px;
 }
 .header {
 display: grid;
 grid-template-columns: 1fr auto;
 align-items: end;
-gap: 24px;
-padding-bottom: 32px;
-border-bottom: 2px solid var(--ink);
+gap: 40px;
+padding-bottom: 40px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 margin-bottom: 40px;
 }
 .name {
-font-family: 'Cormorant Garamond', serif;
-font-weight: 300;
-font-size: 52px;
-letter-spacing: -0.5px;
-line-height: 1;
-color: var(--ink);
+font-size: 48px;
+font-weight: 600;
+color: var(--text-primary);
+line-height: 1.2;
 }
-.name span {
-display: block;
-font-style: italic;
-color: var(--accent);
+.name-accent {
+background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
-.contact-block {
+.contact-info {
 text-align: right;
-font-size: 12.5px;
-color: var(--ink-mid);
+font-size: 13px;
+color: var(--text-secondary);
 line-height: 1.9;
 }
-.contact-block a {
-color: var(--accent);
+.contact-info a {
+color: var(--accent-cyan);
 text-decoration: none;
-border-bottom: 1px solid transparent;
-transition: border-color 0.2s;
-}
-.contact-block a:hover {
-border-bottom-color: var(--accent);
 }
 .section {
-display: grid;
-grid-template-columns: 160px 1fr;
-gap: 0 40px;
 margin-bottom: 40px;
 }
-.section-label {
-font-family: 'DM Sans', sans-serif;
-font-size: 10px;
-font-weight: 500;
-letter-spacing: 2.5px;
+.section-title {
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.2em;
 text-transform: uppercase;
-color: var(--ink-muted);
-padding-top: 4px;
-border-top: 1px solid var(--rule);
-}
-.section-body {
-border-top: 1px solid var(--rule);
-padding-top: 4px;
-}
-.summary-text {
-font-family: 'Cormorant Garamond', serif;
-font-weight: 400;
-font-size: 17px;
-line-height: 1.75;
-color: var(--ink-mid);
+color: var(--accent-cyan);
+margin-bottom: 25px;
+padding-bottom: 12px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .entry {
 margin-bottom: 28px;
-padding-bottom: 28px;
-border-bottom: 1px solid var(--rule);
-}
-.entry:last-child {
-border-bottom: none;
-margin-bottom: 0;
-padding-bottom: 0;
 }
 .entry-header {
 display: flex;
 justify-content: space-between;
 align-items: baseline;
-gap: 16px;
+gap: 20px;
+margin-bottom: 8px;
 flex-wrap: wrap;
-margin-bottom: 2px;
 }
 .entry-title {
-font-weight: 500;
-font-size: 14.5px;
-color: var(--ink);
+font-size: 15px;
+font-weight: 600;
+color: var(--text-primary);
+}
+.entry-org {
+font-size: 12px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--accent-blue);
 }
 .entry-date {
 font-size: 12px;
-color: var(--ink-muted);
-white-space: nowrap;
+color: var(--text-secondary);
 }
-.entry-org {
+.entry-desc {
 font-size: 13px;
-color: var(--accent);
-margin-bottom: 10px;
+color: var(--text-secondary);
+line-height: 1.8;
+margin: 10px 0 12px;
 }
 .entry-bullets {
 list-style: none;
 padding: 0;
+font-size: 13px;
+color: var(--text-secondary);
 }
 .entry-bullets li {
-font-size: 13px;
-color: var(--ink-mid);
+margin-bottom: 8px;
 padding-left: 16px;
 position: relative;
-margin-bottom: 5px;
-line-height: 1.6;
 }
 .entry-bullets li::before {
-content: '—';
+content: '→';
 position: absolute;
 left: 0;
-color: var(--accent);
-font-size: 11px;
-}
-.edu-entry {
-margin-bottom: 20px;
-}
-.edu-entry:last-child {
-margin-bottom: 0;
-}
-.edu-header {
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-flex-wrap: wrap;
-gap: 8px;
-}
-.edu-degree {
-font-weight: 500;
-font-size: 14.5px;
-}
-.edu-org {
-font-size: 13px;
-color: var(--ink-muted);
-margin: 2px 0 4px;
-}
-.edu-modules {
-font-size: 12.5px;
-color: var(--ink-muted);
-font-style: italic;
+color: var(--accent-cyan);
 }
 .skills-grid {
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 16px 32px;
+grid-template-columns: repeat(2, 1fr);
+gap: 20px;
 }
 .skill-group {
-margin-bottom: 0;
+background: rgba(74, 158, 255, 0.05);
+border: 1px solid rgba(74, 158, 255, 0.15);
+border-radius: 8px;
+padding: 20px;
 }
-.skill-category {
-font-size: 11px;
-font-weight: 500;
-letter-spacing: 1.5px;
+.skill-group-title {
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.1em;
+color: var(--accent-blue);
+margin-bottom: 12px;
 text-transform: uppercase;
-color: var(--accent);
-margin-bottom: 4px;
 }
 .skill-list {
 font-size: 13px;
-color: var(--ink-mid);
-line-height: 1.6;
-}
-.cert-block {
-margin-bottom: 14px;
-}
-.cert-label {
-font-size: 11px;
-font-weight: 500;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-color: var(--accent);
-margin-bottom: 4px;
-}
-.cert-text {
-font-size: 13px;
-color: var(--ink-mid);
-line-height: 1.7;
-}
-.cert-text .sep {
-color: var(--rule);
-margin: 0 6px;
+color: var(--text-secondary);
+line-height: 1.8;
 }
 @media print {
 body { background: white; }
-.page { margin: 0; border: none; padding: 48px; }
+.page { background: white; border: none; box-shadow: none; }
 }
-@media (max-width: 720px) {
-.page { padding: 32px 24px; margin: 0; border: none; }
-.section { grid-template-columns: 1fr; gap: 8px; }
-.section-label { border-top: none; padding-bottom: 4px; }
-.section-body { border-top: none; padding-top: 0; }
-.header { grid-template-columns: 1fr; }
-.contact-block { text-align: left; }
-.name { font-size: 40px; }
+@media (max-width: 768px) {
+.page { padding: 30px 25px; }
+.header { grid-template-columns: 1fr; gap: 20px; }
+.contact-info { text-align: left; }
 .skills-grid { grid-template-columns: 1fr; }
+.entry-header { flex-direction: column; gap: 5px; }
 }
 </style>
 </head>
@@ -1223,75 +972,89 @@ body { background: white; }
 <div class="page">
 <header class="header">
 <div>
-<h1 class="name">Ruhani <span>Bajaj</span></h1>
+<h1 class="name">Ruhani <span class="name-accent">Bajaj</span></h1>
 </div>
-<div class="contact-block">
-<a href="mailto:ruhanibajaj1@gmail.com">ruhanibajaj1@gmail.com</a><br />
-(+44) 07352 685719<br />
-Birmingham, UK<br />
-<a href="http://www.linkedin.com/in/ruhani-bajaj-rb" target="_blank">LinkedIn Profile</a>
+<div class="contact-info">
+<a href="mailto:ruhanibajaj1@gmail.com">ruhanibajaj1@gmail.com</a><br>
+(+44) 07352 685719<br>
+Birmingham, UK<br>
+<a href="https://linkedin.com/in/ruhani-bajajrb">LinkedIn Profile</a>
 </div>
 </header>
+
 <div class="section">
-<div class="section-label">Profile</div>
-<div class="section-body">
-<p class="summary-text">MSc Management candidate at the University of Birmingham with hands-on experience across brand marketing, digital content, business operations, and financial analysis. Founded a social media marketing agency (Escalate) from the ground up, demonstrating entrepreneurial drive that complements strong academic grounding. Skilled at blending data insight with creative strategy to deliver measurable outcomes. Eligible to work full-time in the UK on the Graduate Route visa.</p>
+<h2 class="section-title">Profile</h2>
+<p style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;">MSc Management candidate at the University of Birmingham with hands-on experience across brand marketing, digital content, business operations, and financial analysis. Founded a social media marketing agency (Escalate) from the ground up, demonstrating entrepreneurial drive that complements strong academic grounding. Skilled at blending data insight with creative strategy to deliver measurable outcomes. Eligible to work full-time in the UK on the Graduate Route visa.</p>
 </div>
-</div>
+
 <div class="section">
-<div class="section-label">Experience</div>
-<div class="section-body">
+<h2 class="section-title">Experience</h2>
+
 <div class="entry">
 <div class="entry-header">
-<span class="entry-title">Brand Ambassador</span>
-<span class="entry-date">Mar 2026 — Present</span>
+<div>
+<div class="entry-title">Brand Ambassador</div>
+<div class="entry-org">Canva</div>
 </div>
-<div class="entry-org">Canva · Birmingham, UK</div>
+<div class="entry-date">Mar 2026 — Present</div>
+</div>
 <ul class="entry-bullets">
 <li>Selected as a Gen C Canva Ambassador, representing the brand across the University of Birmingham through activations, demos, and community building.</li>
 <li>Tested early-stage Canva products and relayed structured user feedback directly to the Canva product team.</li>
 </ul>
 </div>
+
 <div class="entry">
 <div class="entry-header">
-<span class="entry-title">Co-Founder & Strategy Lead</span>
-<span class="entry-date">2023 — Present</span>
+<div>
+<div class="entry-title">Co-Founder & Strategy Lead</div>
+<div class="entry-org">Escalate — Social Media Marketing Agency</div>
 </div>
-<div class="entry-org">Escalate — Social Media Marketing Agency · Remote</div>
+<div class="entry-date">2023 — Present</div>
+</div>
 <ul class="entry-bullets">
 <li>Founded a boutique agency delivering content strategy, paid social advertising, and influencer campaigns for SMEs across multiple industries.</li>
 <li>Managed the full client lifecycle — from pitch and acquisition through campaign execution, performance reporting, and retention.</li>
 <li>Built scalable content workflows and ran data-driven optimisation cycles to improve engagement, reach, and conversion for client accounts.</li>
 </ul>
 </div>
+
 <div class="entry">
 <div class="entry-header">
-<span class="entry-title">Marketing & Content Intern</span>
-<span class="entry-date">Jun — Sep 2025</span>
+<div>
+<div class="entry-title">Marketing & Content Intern</div>
+<div class="entry-org">Silver Fern Education Consultants</div>
 </div>
-<div class="entry-org">Silver Fern Education Consultants · Chandigarh, India</div>
+<div class="entry-date">Jun — Sep 2025</div>
+</div>
 <ul class="entry-bullets">
 <li>Authored 10+ SEO-optimised blogs and produced 30+ social media posts for Instagram and Facebook, improving keyword rankings and engagement metrics.</li>
 <li>Supported content strategy planning and analysed platform analytics to align content with audience behaviour and business goals.</li>
 </ul>
 </div>
+
 <div class="entry">
 <div class="entry-header">
-<span class="entry-title">Social Media Marketing Intern</span>
-<span class="entry-date">Apr — Jun 2024</span>
+<div>
+<div class="entry-title">Social Media Marketing Intern</div>
+<div class="entry-org">YouVah</div>
 </div>
-<div class="entry-org">YouVah · India</div>
+<div class="entry-date">Apr — Jun 2024</div>
+</div>
 <ul class="entry-bullets">
 <li>Developed platform-specific social strategies to drive brand visibility and audience engagement across Instagram, LinkedIn, and Twitter.</li>
 <li>Monitored campaign analytics and compiled performance summaries to inform ongoing content optimisation.</li>
 </ul>
 </div>
+
 <div class="entry">
 <div class="entry-header">
-<span class="entry-title">Operations, Sustainability & Accounts Intern</span>
-<span class="entry-date">Jul — Dec 2024</span>
+<div>
+<div class="entry-title">Operations, Sustainability & Accounts Intern</div>
+<div class="entry-org">Assam Wood and Allied Products</div>
 </div>
-<div class="entry-org">Assam Wood and Allied Products · Yamunanagar, India</div>
+<div class="entry-date">Jul — Dec 2024</div>
+</div>
 <ul class="entry-bullets">
 <li>Led workflow optimisation initiatives, contributing to a 20% improvement in operational efficiency across cross-functional teams.</li>
 <li>Conducted sustainability assessments and presented eco-friendly initiatives to senior management; two proposals were formally adopted.</li>
@@ -1299,72 +1062,65 @@ Birmingham, UK<br />
 </ul>
 </div>
 </div>
-</div>
+
 <div class="section">
-<div class="section-label">Education</div>
-<div class="section-body">
-<div class="edu-entry">
-<div class="edu-header">
-<span class="entry-title">MSc in Management</span>
-<span class="entry-date">Sep 2025 — Sep 2026</span>
+<h2 class="section-title">Education</h2>
+
+<div class="entry">
+<div class="entry-header">
+<div>
+<div class="entry-title">MSc in Management</div>
+<div class="entry-org">University of Birmingham, UK</div>
 </div>
-<div class="edu-org">University of Birmingham, UK</div>
-<div class="edu-modules">Entrepreneurship · Digital Business · Sustainable Business · Operations Management · Strategic Business Environment</div>
+<div class="entry-date">Sep 2025 — Sep 2026</div>
 </div>
-<div class="edu-entry">
-<div class="edu-header">
-<span class="entry-title">BBA — First Division</span>
-<span class="entry-date">Sep 2022 — Jun 2025</span>
+<p style="font-size: 12px; color: var(--text-secondary); font-style: italic;">Entrepreneurship · Digital Business · Sustainable Business · Operations Management · Strategic Business Environment</p>
 </div>
-<div class="edu-org">Panjab University / D.A.V. College, Chandigarh, India</div>
-<div class="edu-modules">Marketing Management · Financial Management · Business Analytics · Organisational Behaviour</div>
+
+<div class="entry">
+<div class="entry-header">
+<div>
+<div class="entry-title">BBA — First Division</div>
+<div class="entry-org">Panjab University / D.A.V. College, Chandigarh, India</div>
+</div>
+<div class="entry-date">Sep 2022 — Jun 2025</div>
+</div>
+<p style="font-size: 12px; color: var(--text-secondary); font-style: italic;">Marketing Management · Financial Management · Business Analytics · Organisational Behaviour</p>
 </div>
 </div>
-</div>
+
 <div class="section">
-<div class="section-label">Skills</div>
-<div class="section-body">
+<h2 class="section-title">Skills</h2>
 <div class="skills-grid">
 <div class="skill-group">
-<div class="skill-category">Brand & Marketing</div>
+<div class="skill-group-title">Brand & Marketing</div>
 <div class="skill-list">Brand Positioning · Campaign Strategy · Consumer Insight · Growth Marketing · Brand Storytelling</div>
 </div>
 <div class="skill-group">
-<div class="skill-category">Digital & Content</div>
+<div class="skill-group-title">Digital & Content</div>
 <div class="skill-list">SEO · Social Media Strategy · Paid Social · Influencer Marketing · Content Calendars · Analytics</div>
 </div>
 <div class="skill-group">
-<div class="skill-category">Sales & Consultancy</div>
+<div class="skill-group-title">Sales & Consultancy</div>
 <div class="skill-list">Client Acquisition · Market Research · Competitive Analysis · Stakeholder Management · Pitching</div>
 </div>
 <div class="skill-group">
-<div class="skill-category">Tools</div>
+<div class="skill-group-title">Tools</div>
 <div class="skill-list">Excel · Google Analytics · Meta Business Suite · Canva</div>
 </div>
 </div>
 </div>
-</div>
+
 <div class="section">
-<div class="section-label">Extras</div>
-<div class="section-body">
-<div class="cert-block">
-<div class="cert-label">Certifications</div>
-<div class="cert-text">Social Media Marketing (YouVah)<span class="sep">·</span>Data Analytics Career Skills (LinkedIn Learning)<span class="sep">·</span>Instagram Marketing<span class="sep">·</span>Big Data Analytics Solutions</div>
-</div>
-<div class="cert-block">
-<div class="cert-label">Achievements</div>
-<div class="cert-text">1st Place — National Dance Competition<span class="sep">·</span>MUN International Conferences (Russia & Switzerland)<span class="sep">·</span>Academic Excellence Scholar<span class="sep">·</span>Certified Scuba Diver</div>
-</div>
-<div class="cert-block">
-<div class="cert-label">Languages</div>
-<div class="cert-text">English (Fluent)<span class="sep">·</span>Hindi (Fluent)<span class="sep">·</span>French (Basic)</div>
-</div>
-</div>
+<h2 class="section-title">Certifications & Achievements</h2>
+<p style="font-size: 13px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px;"><strong style="color: var(--text-primary);">Certifications:</strong> Social Media Marketing (YouVah) · Data Analytics Career Skills (LinkedIn Learning) · Instagram Marketing · Big Data Analytics Solutions</p>
+<p style="font-size: 13px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px;"><strong style="color: var(--text-primary);">Achievements:</strong> 1st Place – National Dance Competition · MUN International Conferences (Russia & Switzerland) · Academic Excellence Scholar · Certified Scuba Diver</p>
+<p style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;"><strong style="color: var(--text-primary);">Languages:</strong> English (Fluent) · Hindi (Fluent) · French (Basic)</p>
 </div>
 </div>
 </body>
 </html>`;
-    
+
     const blob = new Blob([resumeHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1374,7 +1130,11 @@ Birmingham, UK<br />
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  });
+  }
+
+  document.getElementById('downloadResumeBtn').addEventListener('click', downloadResume);
+  document.getElementById('downloadResumeBtnMain').addEventListener('click', downloadResume);
 </script>
+
 </body>
 </html>
