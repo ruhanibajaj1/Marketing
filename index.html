@@ -29,7 +29,9 @@ body {
   color: var(--white);
   font-family: 'Space Grotesk', sans-serif;
   overflow-x: hidden;
-  cursor: none;
+}
+@media (pointer: fine) {
+  body { cursor: none; }
 }
 
 /* ---- CURSOR ---- */
@@ -208,7 +210,7 @@ nav.scrolled {
   letter-spacing: 0.12em; text-transform: uppercase;
   text-decoration: none; border: none;
   border-radius: 2px;
-  cursor: none;
+  cursor: pointer;
   transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
   display: inline-flex; align-items: center; gap: 8px;
   position: relative; overflow: hidden;
@@ -235,7 +237,7 @@ nav.scrolled {
   text-decoration: none;
   border: 1.5px solid rgba(255,255,255,0.25);
   border-radius: 2px;
-  cursor: none;
+  cursor: pointer;
   transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
   display: inline-flex; align-items: center; gap: 8px;
 }
@@ -418,7 +420,7 @@ nav.scrolled {
   letter-spacing: 0.05em;
   color: var(--yellow);
   transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  cursor: none;
+  cursor: pointer;
 }
 .badge:hover {
   background: var(--yellow);
@@ -544,7 +546,7 @@ nav.scrolled {
   padding: 40px 0;
   border-bottom: 1px solid rgba(255,255,255,0.07);
   position: relative;
-  cursor: none;
+  cursor: pointer;
 }
 .exp-item::before {
   content: '';
@@ -643,7 +645,7 @@ nav.scrolled {
   border-radius: 8px;
   padding: 32px;
   transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  cursor: none;
+  cursor: pointer;
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
@@ -699,7 +701,7 @@ nav.scrolled {
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  cursor: none;
+  cursor: pointer;
 }
 .edu-card::before {
   content: '';
@@ -772,7 +774,7 @@ nav.scrolled {
   padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
   transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-  cursor: none;
+  cursor: pointer;
 }
 .cert-item:hover { transform: translateX(6px); }
 .cert-bullet {
@@ -849,7 +851,7 @@ nav.scrolled {
   text-decoration: none;
   border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  cursor: none;
+  cursor: pointer;
 }
 .contact-link:hover {
   background: rgba(0,0,0,0.85);
@@ -1293,9 +1295,9 @@ footer {
   <h2 class="section-title-big">Let's Make<br>Something<br>Together.</h2>
 
   <div class="contact-links reveal">
-    <a href="mailto:ruhani.bajaj@email.com" class="contact-link">✉ Email Me</a>
-    <a href="https://linkedin.com/in/ruhanibajaj" target="_blank" class="contact-link">↗ LinkedIn</a>
-    <a href="https://escalate.agency" target="_blank" class="contact-link">↗ Escalate Agency</a>
+    <a href="mailto:ruhanibajaj1@gmail.com" class="contact-link">✉ Email Me</a>
+    <a href="https://linkedin.com/in/ruhani-bajajrb" target="_blank" class="contact-link">↗ LinkedIn</a>
+    <a href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" class="contact-link">↗ Escalate Agency</a>
   </div>
 </section>
 
