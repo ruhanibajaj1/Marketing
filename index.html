@@ -3,526 +3,646 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ruhani Bajaj — Editorial Portfolio</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Ruhani Bajaj — Strategy × Marketing × Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root{
-      --bg:#f6f2eb;
-      --bg-soft:#efe8dd;
-      --ink:#151515;
-      --muted:#6f6a63;
-      --line:#d8cfc2;
-      --gold:#8c6a3d;
-      --gold-soft:#b5976f;
-      --card:#f9f5ef;
-      --max:1220px;
+      --bg: #f6f8ff;
+      --bg-soft: #eef3ff;
+      --text: #1a1f36;
+      --muted: #657095;
+      --card: rgba(255,255,255,0.68);
+      --stroke: rgba(123, 97, 255, 0.18);
+
+      --primary: #7b61ff;     /* violet */
+      --secondary: #00c2ff;   /* cyan */
+      --accent: #ff6b6b;      /* coral */
+      --accent-2: #ffb347;    /* warm amber */
+
+      --shadow: 0 20px 50px rgba(85, 102, 173, 0.16);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
     body{
-      background:var(--bg);
-      color:var(--ink);
-      font-family:'Inter',sans-serif;
+      font-family:'Space Grotesk',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(123,97,255,0.22), transparent 34%),
+        radial-gradient(circle at 88% 18%, rgba(0,194,255,0.20), transparent 30%),
+        radial-gradient(circle at 78% 82%, rgba(255,107,107,0.18), transparent 30%),
+        radial-gradient(circle at 24% 82%, rgba(255,179,71,0.20), transparent 35%),
+        linear-gradient(135deg, #f9fbff 0%, #eef4ff 50%, #f7f1ff 100%);
+      min-height:100vh;
       overflow-x:hidden;
-      line-height:1.6;
-      letter-spacing:.01em;
     }
 
-    /* subtle paper grain */
-    body::before{
-      content:'';
-      position:fixed; inset:0;
+    /* Animated soft blobs */
+    .bg-blob{
+      position:fixed;
+      border-radius:50%;
+      filter: blur(40px);
+      z-index:-2;
+      opacity:.45;
+      pointer-events:none;
+      animation: drift 18s ease-in-out infinite;
+    }
+    .blob-1{ width:360px;height:360px; background:#9d8bff; top:-80px; left:-90px; }
+    .blob-2{ width:420px;height:420px; background:#78e4ff; top:120px; right:-140px; animation-delay: -6s;}
+    .blob-3{ width:380px;height:380px; background:#ffb3b3; bottom:-120px; left:22%; animation-delay: -11s;}
+
+    @keyframes drift{
+      0%,100%{ transform: translate(0,0) scale(1);}
+      25%{ transform: translate(20px,-25px) scale(1.05);}
+      50%{ transform: translate(-20px,18px) scale(.95);}
+      75%{ transform: translate(16px,12px) scale(1.02);}
+    }
+
+    /* Subtle moving grid overlay */
+    .grid-overlay{
+      position:fixed;
+      inset:0;
+      z-index:-1;
       pointer-events:none;
       background-image:
-        radial-gradient(rgba(0,0,0,.03) 1px, transparent 1px);
-      background-size:3px 3px;
-      opacity:.16;
-      z-index:-2;
+        linear-gradient(rgba(123,97,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123,97,255,.08) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 95%);
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove{
+      0%{ transform: translateY(0);}
+      100%{ transform: translateY(34px);}
     }
 
-    .container{width:min(var(--max),92%);margin-inline:auto}
+    .container{
+      width:min(1180px, 92%);
+      margin:0 auto;
+      position:relative;
+      z-index:2;
+    }
 
-    /* top nav */
+    /* NAV */
     .nav-wrap{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(8px);
-      background:rgba(246,242,235,.78);
-      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:16px;
+      z-index:50;
+      margin-top:16px;
     }
     nav{
-      height:74px;
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 18px;
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(14px);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow: var(--shadow);
+      border-radius: 999px;
     }
     .logo{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.5rem;
+      font-weight:800;
       letter-spacing:.12em;
+      font-size:.95rem;
+      color:var(--primary);
       text-transform:uppercase;
-      font-weight:600;
+      padding-left:8px;
     }
-    .logo span{color:var(--gold)}
     .nav-links{
-      list-style:none;display:flex;gap:26px;flex-wrap:wrap;
+      display:flex;
+      list-style:none;
+      gap:8px;
+      flex-wrap:wrap;
     }
     .nav-links a{
-      text-decoration:none;color:var(--muted);
-      font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
-      transition:.28s ease;
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:.88rem;
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.25s ease;
     }
-    .nav-links a:hover{color:var(--ink)}
+    .nav-links a:hover{
+      color:#fff;
+      background:linear-gradient(90deg,var(--primary),var(--secondary));
+      transform:translateY(-2px);
+    }
 
-    /* hero */
+    /* HERO */
     .hero{
-      min-height:88vh;
+      padding:88px 0 36px;
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:42px;
-      align-items:end;
-      padding:74px 0 66px;
-      border-bottom:1px solid var(--line);
-      position:relative;
+      grid-template-columns: 1.1fr .9fr;
+      gap:30px;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.77rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--primary);
+      background:rgba(123,97,255,.12);
+      border:1px solid rgba(123,97,255,.22);
+      padding:8px 12px;
+      border-radius:999px;
+      margin-bottom:16px;
+      font-weight:700;
+    }
+    .hero h1{
+      font-family:'Clash Display', sans-serif;
+      font-size:clamp(2.2rem, 5vw, 4.4rem);
+      line-height:1.03;
+      letter-spacing:-.02em;
+      margin-bottom:14px;
+    }
+    .gradient-text{
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero p{
+      font-size:1.02rem;
+      color:var(--muted);
+      line-height:1.8;
+      max-width:58ch;
+      margin-bottom:24px;
+    }
+    .hero-btns{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:.9rem;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(90deg,var(--primary),var(--secondary));
+      box-shadow: 0 10px 24px rgba(91,113,255,.30);
+    }
+    .btn-primary:hover{ transform:translateY(-3px); }
+    .btn-ghost{
+      color:var(--primary);
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(123,97,255,.24);
+    }
+    .btn-ghost:hover{ transform:translateY(-3px); background:#fff; }
+
+    .hero-card{
+      background:var(--card);
+      backdrop-filter: blur(12px);
+      border:1px solid rgba(255,255,255,.75);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+      padding:24px;
+      animation: floaty 7s ease-in-out infinite;
+    }
+    .hero-mini-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:8px;
+    }
+    .mini{
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      padding:14px;
+    }
+    .mini h4{
+      font-size:1.4rem;
+      line-height:1;
+      font-family:'Clash Display', sans-serif;
+      color:var(--primary);
+      margin-bottom:6px;
+    }
+    .mini p{
+      margin:0;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      line-height:1.4;
+      font-weight:700;
     }
 
-    .hero-left .kicker{
+    @keyframes floaty{
+      0%,100%{ transform:translateY(0);}
+      50%{ transform:translateY(-8px);}
+    }
+
+    .section{
+      margin-top:22px;
+      padding:28px 0 10px;
+    }
+    .section-title{
+      font-family:'Clash Display', sans-serif;
+      font-size:clamp(1.65rem, 3.2vw, 2.5rem);
+      margin-bottom:18px;
+      letter-spacing:-.015em;
+      position:relative;
       display:inline-block;
+    }
+    .section-title::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:72%;
+      height:4px;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
+    }
+
+    .glass{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.75);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
+
+    /* ABOUT */
+    .about-wrap{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:20px;
+    }
+    .about-content{
+      padding:22px;
+    }
+    .about-content h3{
+      font-family:'Clash Display',sans-serif;
+      font-size:1.75rem;
+      line-height:1.2;
+      margin-bottom:12px;
+    }
+    .about-content h3 span{ color:var(--accent); }
+    .about-content p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:10px;
+      font-size:.97rem;
+    }
+
+    .stats{
+      padding:18px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      align-content:start;
+    }
+    .stat{
+      padding:16px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.7);
+      transition:.25s ease;
+    }
+    .stat:hover{ transform:translateY(-4px); }
+    .stat .num{
+      font-family:'Clash Display',sans-serif;
+      font-size:2rem;
+      color:var(--primary);
+      line-height:1;
+    }
+    .stat .lbl{
+      margin-top:8px;
       font-size:.72rem;
-      letter-spacing:.18em;
       text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:22px;
-      border:1px solid var(--gold-soft);
+      letter-spacing:.1em;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    /* EXPERIENCE */
+    .timeline{
+      display:grid;
+      gap:12px;
+    }
+    .exp{
+      padding:18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.8);
+      background:rgba(255,255,255,.74);
+      transition:.25s ease;
+    }
+    .exp:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+    .exp-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+    .company{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--primary);
+      font-weight:800;
+    }
+    .period{
+      font-size:.78rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .role{
+      font-family:'Clash Display',sans-serif;
+      font-size:1.35rem;
+      margin-bottom:8px;
+    }
+    .exp p{
+      color:var(--muted);
+      line-height:1.75;
+      margin-bottom:10px;
+      font-size:.95rem;
+    }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+    .tag{
+      font-size:.72rem;
+      font-weight:700;
+      color:#4a4f73;
+      background:linear-gradient(90deg, rgba(123,97,255,.13), rgba(0,194,255,.13));
+      border:1px solid rgba(123,97,255,.2);
+      border-radius:999px;
       padding:7px 11px;
     }
 
-    .hero h1{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.6rem,7vw,6.4rem);
-      line-height:.92;
-      font-weight:600;
-      letter-spacing:-.01em;
-      max-width:12ch;
-      margin-bottom:22px;
-      text-transform:uppercase;
-    }
-
-    .hero p{
-      max-width:58ch;
-      color:var(--muted);
-      font-size:.98rem;
-      margin-bottom:30px;
-    }
-
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      text-decoration:none;
-      font-size:.76rem;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      padding:12px 16px;
-      border:1px solid var(--ink);
-      color:var(--ink);
-      transition:.28s ease;
-      background:transparent;
-    }
-    .btn:hover{background:var(--ink);color:var(--bg)}
-    .btn.secondary{
-      border-color:var(--line);
-      color:var(--muted);
-      background:transparent;
-    }
-    .btn.secondary:hover{
-      border-color:var(--ink);
-      color:var(--ink);
-      background:transparent;
-    }
-
-    .hero-right{
-      align-self:stretch;
-      border:1px solid var(--line);
-      padding:18px;
-      display:grid;
-      grid-template-rows:auto 1fr auto;
-      background:linear-gradient(170deg,var(--card),var(--bg-soft));
-      min-height:440px;
-    }
-    .meta{
-      font-size:.66rem;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:var(--gold);
-      margin-bottom:8px;
-    }
-    .cover{
-      border:1px solid var(--line);
-      background:
-        linear-gradient(160deg, rgba(140,106,61,.14), transparent 40%),
-        linear-gradient(20deg, rgba(0,0,0,.04), transparent 35%),
-        #f4ede3;
-      display:grid; place-items:center;
-      padding:20px;
-    }
-    .cover h3{
-      font-family:'Cormorant Garamond',serif;
-      text-transform:uppercase;
-      font-size:clamp(1.2rem,2.2vw,2rem);
-      letter-spacing:.08em;
-      text-align:center;
-      line-height:1.15;
-    }
-    .hero-note{
-      margin-top:12px;
-      font-size:.78rem;color:var(--muted);
-      border-top:1px solid var(--line);
-      padding-top:10px;
-    }
-
-    /* editorial section headers */
-    .section{
-      padding:64px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .section-head{
-      display:grid;
-      grid-template-columns:180px 1fr;
-      gap:20px;
-      align-items:baseline;
-      margin-bottom:28px;
-    }
-    .section-index{
-      font-family:'Cormorant Garamond',serif;
-      color:var(--gold);
-      font-size:1.2rem;
-      letter-spacing:.16em;
-    }
-    .section-title{
-      font-family:'Cormorant Garamond',serif;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      font-weight:600;
-      font-size:clamp(1.7rem,3.6vw,3.1rem);
-      line-height:1;
-    }
-
-    /* about */
-    .about-grid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:24px;
-    }
-    .about-copy{
-      columns:2;
-      column-gap:28px;
-      color:#3f3a34;
-      font-size:.94rem;
-    }
-    .about-copy p{margin-bottom:12px; break-inside:avoid}
-    .stats{
-      border:1px solid var(--line);
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:0;
-      background:var(--card);
-      align-self:start;
-    }
-    .stat{
-      padding:18px;
-      border-right:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      min-height:120px;
-      display:flex;flex-direction:column;justify-content:flex-end;
-    }
-    .stat:nth-child(2n){border-right:none}
-    .stat:nth-last-child(-n+2){border-bottom:none}
-    .stat .num{
-      font-family:'Cormorant Garamond',serif;
-      font-size:2.1rem;
-      line-height:1;
-      color:var(--gold);
-      margin-bottom:4px;
-    }
-    .stat .lbl{
-      font-size:.67rem;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:var(--muted);
-    }
-
-    /* experience */
-    .timeline{
-      display:grid; gap:14px;
-    }
-    .entry{
-      border:1px solid var(--line);
-      background:var(--card);
-      padding:18px;
-      display:grid;
-      grid-template-columns:220px 1fr;
-      gap:20px;
-      transition:.3s ease;
-    }
-    .entry:hover{
-      transform:translateY(-2px);
-      box-shadow:0 8px 26px rgba(0,0,0,.06);
-    }
-    .entry-left .company{
-      font-size:.66rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:8px;
-      display:block;
-    }
-    .entry-left .period{
-      font-size:.78rem;color:var(--muted)
-    }
-    .role{
-      font-family:'Cormorant Garamond',serif;
-      text-transform:uppercase;
-      font-size:1.5rem;
-      letter-spacing:.04em;
-      line-height:1.1;
-      margin-bottom:8px;
-    }
-    .entry p{color:#48433d;font-size:.92rem;margin-bottom:10px}
-    .tags{display:flex;flex-wrap:wrap;gap:8px}
-    .tag{
-      border:1px solid var(--line);
-      padding:6px 8px;
-      font-size:.63rem;
-      letter-spacing:.13em;
-      text-transform:uppercase;
-      color:#59534c;
-      background:#fbf8f2;
-    }
-
-    /* selected work - editorial cards */
+    /* WORK */
     .work-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    .work{
-      min-height:260px;
-      border:1px solid var(--line);
-      background:var(--card);
+    .work-card{
+      min-height:190px;
+      border-radius:18px;
+      padding:18px;
       text-decoration:none;
       color:inherit;
-      padding:20px;
-      display:grid;
-      align-content:space-between;
-      transition:.28s ease;
+      border:1px solid rgba(255,255,255,.8);
+      background:linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,255,255,.62));
+      box-shadow: var(--shadow);
+      transition:.25s ease;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
       position:relative;
       overflow:hidden;
+      isolation:isolate;
     }
-    .work::after{
+    .work-card::before{
       content:'';
       position:absolute;
-      width:160%;
-      height:1px;
-      background:rgba(140,106,61,.35);
-      left:-30%;
-      top:52%;
-      transform:rotate(-8deg) translateX(-120%);
-      transition:.55s ease;
+      inset:-40% -30% auto auto;
+      width:120px;height:120px;
+      background: radial-gradient(circle, rgba(123,97,255,.24), transparent 70%);
+      z-index:-1;
+      transform:translate(0,0);
+      transition:.3s ease;
     }
-    .work:hover::after{transform:rotate(-8deg) translateX(120%)}
-    .work:hover{background:#fffdf9}
-    .work small{
-      font-size:.66rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:var(--gold);
+    .work-card:hover{
+      transform:translateY(-6px);
     }
-    .work h3{
-      font-family:'Cormorant Garamond',serif;
-      text-transform:uppercase;
-      font-size:1.7rem;
-      line-height:1.1;
-      letter-spacing:.04em;
-      margin:10px 0 6px;
+    .work-card:hover::before{
+      transform:translate(-18px,14px);
     }
-    .work p{
-      font-size:.75rem;
-      letter-spacing:.14em;
-      text-transform:uppercase;
+    .work-card h4{
+      font-family:'Clash Display',sans-serif;
+      font-size:1.35rem;
+    }
+    .work-card p{
       color:var(--muted);
-    }
-    .work .link{
-      font-size:.76rem;
-      letter-spacing:.15em;
+      font-size:.82rem;
       text-transform:uppercase;
-      color:var(--ink);
+      letter-spacing:.12em;
+      font-weight:700;
+      margin-top:8px;
+    }
+    .arrow{
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      font-weight:800;
+      color:#fff;
+      background:linear-gradient(90deg,var(--primary),var(--secondary));
+      margin-top:14px;
+      align-self:flex-end;
     }
 
-    /* skills */
-    .skills{
+    /* SKILLS */
+    .skill-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns: repeat(3,1fr);
       gap:12px;
     }
-    .skill{
-      border:1px solid var(--line);
-      background:var(--card);
+    .skill-card{
       padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.8);
+      background:rgba(255,255,255,.72);
     }
-    .skill h4{
-      font-size:.69rem;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:10px;
-    }
-    .skill ul{list-style:none;display:grid;gap:7px}
-    .skill li{
+    .skill-card h4{
       font-size:.88rem;
-      color:#433e38;
-      padding-left:10px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      margin-bottom:10px;
+      color:var(--primary);
+    }
+    .skill-card ul{
+      list-style:none;
+      display:grid;
+      gap:7px;
+    }
+    .skill-card li{
+      font-size:.92rem;
+      color:#465073;
+      padding-left:14px;
       position:relative;
     }
-    .skill li::before{
-      content:'—';
-      position:absolute;left:0;color:var(--gold-soft);
+    .skill-card li::before{
+      content:'•';
+      position:absolute;
+      left:0;
+      color:var(--accent);
+      font-weight:800;
     }
 
-    /* contact */
+    /* CONTACT */
     .contact{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns: 1.1fr .9fr;
       gap:14px;
     }
     .contact-left{
-      border:1px solid var(--line);
-      background:var(--card);
       padding:22px;
     }
     .contact-left h3{
-      font-family:'Cormorant Garamond',serif;
-      text-transform:uppercase;
-      font-size:clamp(1.8rem,4.3vw,3.4rem);
-      line-height:.95;
-      margin-bottom:10px;
+      font-family:'Clash Display',sans-serif;
+      font-size:clamp(1.9rem,4vw,3.2rem);
+      line-height:1.08;
+      margin-bottom:12px;
     }
-    .contact-left h3 span{color:var(--gold)}
-    .contact-left p{color:var(--muted);font-size:.93rem;max-width:48ch}
-
-    .links{
-      border:1px solid var(--line);
-      background:var(--card);
-      display:grid;
-    }
-    .c-link{
-      text-decoration:none;color:inherit;
-      padding:16px 18px;
-      border-bottom:1px solid var(--line);
-      display:flex;align-items:center;justify-content:space-between;
-      transition:.2s ease;
-    }
-    .c-link:last-child{border-bottom:none}
-    .c-link:hover{background:#fffdf8}
-    .c-link small{
-      display:block;
-      font-size:.64rem;
-      text-transform:uppercase;
-      letter-spacing:.16em;
+    .contact-left h3 span{ color:var(--primary); }
+    .contact-left p{
       color:var(--muted);
+      line-height:1.8;
+      max-width:48ch;
+    }
+
+    .contact-right{
+      padding:16px;
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+    .contact-link{
+      text-decoration:none;
+      color:inherit;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.82);
+      background:rgba(255,255,255,.8);
+      padding:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition:.25s ease;
+    }
+    .contact-link:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow);
+    }
+    .contact-link small{
+      display:block;
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      font-weight:700;
       margin-bottom:4px;
     }
-    .c-link strong{
-      font-size:.92rem;font-weight:500;color:#2e2a25;
+    .contact-link strong{
+      font-size:.95rem;
+      color:#2b3356;
     }
 
     footer{
-      padding:22px 0 40px;
-      font-size:.66rem;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:var(--muted);
+      margin:28px 0 20px;
       text-align:center;
+      color:var(--muted);
+      font-size:.78rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:700;
     }
 
     /* reveal */
-    .reveal{opacity:0;transform:translateY(16px);transition:.6s ease}
-    .reveal.show{opacity:1;transform:none}
+    .reveal{ opacity:0; transform:translateY(16px); transition:.6s ease; }
+    .reveal.show{ opacity:1; transform:translateY(0); }
 
-    @media (max-width:1060px){
-      .hero{grid-template-columns:1fr}
-      .about-grid{grid-template-columns:1fr}
-      .work-grid{grid-template-columns:1fr 1fr}
-      .skills{grid-template-columns:1fr 1fr}
-      .entry{grid-template-columns:1fr}
-      .section-head{grid-template-columns:120px 1fr}
+    @media (max-width: 1024px){
+      .hero, .about-wrap, .contact{
+        grid-template-columns:1fr;
+      }
+      .skill-grid{
+        grid-template-columns: repeat(2,1fr);
+      }
     }
-    @media (max-width:760px){
-      .nav-links{display:none}
-      .about-copy{columns:1}
-      .work-grid,.skills,.contact{grid-template-columns:1fr}
-      .hero{padding-top:48px}
-      .section{padding:48px 0}
-      .section-head{grid-template-columns:1fr;gap:6px}
+    @media (max-width: 760px){
+      .nav-links{ display:none; }
+      .hero{ padding-top:68px; }
+      .work-grid{ grid-template-columns:1fr; }
+      .skill-grid{ grid-template-columns:1fr; }
+      .stats{ grid-template-columns:1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <div class="nav-wrap">
-    <div class="container">
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="container">
+
+    <div class="nav-wrap">
       <nav>
-        <div class="logo">Ruhani <span>Bajaj</span></div>
+        <div class="logo">RUHANI</div>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
-          <li><a href="#work">Selected Work</a></li>
+          <li><a href="#work">Work</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
-  </div>
-
-  <main class="container">
 
     <section class="hero">
-      <div class="hero-left reveal">
-        <span class="kicker">Strategy × Marketing × Operations</span>
-        <h1>Building Brands with Quiet Power</h1>
+      <div class="reveal">
+        <span class="pill">⚡ Strategy × Marketing × Operations</span>
+        <h1>
+          Building <span class="gradient-text">Brands</span><br />
+          with bold ideas.
+        </h1>
         <p>
           MSc Management candidate blending data insight with creative strategy.
           I help brands grow through intelligent marketing, operational excellence,
-          and stories that stay with people.
+          and stories that stick.
         </p>
-        <div class="hero-actions">
-          <a class="btn" href="#contact">Let's Create</a>
-          <a class="btn secondary" href="https://docs.google.com/document/d/1z1w-Ej11g6euYoNCkfZYDPZLMKTQBctS2K5xFl9xdz0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Download Resume</a>
+        <div class="hero-btns">
+          <a class="btn btn-primary" href="#contact">Let's Create ↓</a>
+          <a class="btn btn-ghost" href="https://docs.google.com/document/d/1z1w-Ej11g6euYoNCkfZYDPZLMKTQBctS2K5xFl9xdz0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">📄 Download Resume</a>
         </div>
       </div>
 
-      <aside class="hero-right reveal">
-        <div class="meta">Editorial Profile — 2026</div>
-        <div class="cover">
-          <h3>Ruhani Bajaj<br/>Marketing Strategy<br/>& Brand Operations</h3>
+      <div class="hero-card reveal">
+        <h3 style="font-family:'Clash Display',sans-serif;font-size:1.4rem;margin-bottom:6px;">Quick Snapshot</h3>
+        <p style="color:var(--muted);line-height:1.7;margin-bottom:12px;">
+          Marketing strategist with agency-building experience, content expertise, and an operations-first mindset.
+        </p>
+        <div class="hero-mini-grid">
+          <div class="mini"><h4>3+</h4><p>Years in Marketing</p></div>
+          <div class="mini"><h4>10+</h4><p>SEO Blogs Published</p></div>
+          <div class="mini"><h4>2</h4><p>Countries Worked In</p></div>
+          <div class="mini"><h4>∞</h4><p>Ideas per Day</p></div>
         </div>
-        <div class="hero-note">
-          University of Birmingham • Gen C Canva Ambassador • Co-Founder at Escalate
-        </div>
-      </aside>
+      </div>
     </section>
 
     <section id="about" class="section">
-      <div class="section-head">
-        <div class="section-index">01 /</div>
-        <h2 class="section-title">About</h2>
-      </div>
-      <div class="about-grid reveal">
-        <div class="about-copy">
-          <p>I’m a marketer and strategist who started by building from zero — Escalate, a social media agency for SMEs. That journey taught me real growth begins with understanding people first.</p>
-          <p>Currently pursuing my MSc in Management at the University of Birmingham while representing Canva as a Gen C Ambassador. My work spans brand marketing, digital content, operations, and financial analysis.</p>
-          <p>I’m drawn to organizations with genuine stories to tell — where creativity, strategy, and community matter as much as conversion metrics.</p>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-wrap">
+        <div class="about-content glass reveal">
+          <h3>Strategy-led. <span>Story-driven.</span> People-first.</h3>
+          <p>I'm a marketer and strategist who started by building something from zero — Escalate, a social media agency for SMEs, taught me that real growth comes from understanding people first.</p>
+          <p>Currently pursuing my MSc in Management at the University of Birmingham while representing Canva as a Gen C Ambassador. My background spans brand marketing, digital content, business operations, and financial analysis.</p>
+          <p>I'm drawn to organizations with genuine stories to tell — where creativity, strategy, and community matter as much as conversion metrics.</p>
         </div>
-        <div class="stats">
+        <div class="stats glass reveal">
           <div class="stat"><div class="num">3+</div><div class="lbl">Years in Marketing</div></div>
           <div class="stat"><div class="num">10+</div><div class="lbl">SEO Blogs Published</div></div>
           <div class="stat"><div class="num">2</div><div class="lbl">Countries Worked In</div></div>
@@ -532,140 +652,114 @@
     </section>
 
     <section id="experience" class="section">
-      <div class="section-head">
-        <div class="section-index">02 /</div>
-        <h2 class="section-title">Experience</h2>
-      </div>
+      <h2 class="section-title">Professional Journey</h2>
       <div class="timeline reveal">
-
-        <article class="entry">
-          <div class="entry-left">
+        <article class="exp">
+          <div class="exp-top">
             <span class="company">Canva</span>
-            <div class="period">Mar 2026 – Present</div>
+            <span class="period">Mar 2026 – Present</span>
           </div>
-          <div>
-            <h3 class="role">Brand Ambassador</h3>
-            <p>Selected as a Gen C Canva Ambassador at the University of Birmingham — running activations, demos, and community initiatives. Providing structured product feedback directly to the Canva team.</p>
-            <div class="tags">
-              <span class="tag">Brand Representation</span>
-              <span class="tag">Community Building</span>
-              <span class="tag">Product Feedback</span>
-            </div>
+          <h3 class="role">Brand Ambassador</h3>
+          <p>Selected as a Gen C Canva Ambassador at the University of Birmingham — running activations, demos, and community initiatives. Providing structured product feedback directly to the Canva team.</p>
+          <div class="tags">
+            <span class="tag">Brand Representation</span>
+            <span class="tag">Community Building</span>
+            <span class="tag">Product Feedback</span>
           </div>
         </article>
 
-        <article class="entry">
-          <div class="entry-left">
+        <article class="exp">
+          <div class="exp-top">
             <span class="company">Escalate — Social Media Agency</span>
-            <div class="period">2023 – Present</div>
+            <span class="period">2023 – Present</span>
           </div>
-          <div>
-            <h3 class="role">Co-Founder & Strategy Lead</h3>
-            <p>Built a boutique digital marketing agency from the ground up, delivering content strategy, paid social, and influencer campaigns for SMEs across multiple industries. Managed full client lifecycle from pitch to retention.</p>
-            <div class="tags">
-              <span class="tag">Agency Founding</span>
-              <span class="tag">Paid Social</span>
-              <span class="tag">Client Strategy</span>
-              <span class="tag">Content Workflows</span>
-            </div>
+          <h3 class="role">Co-Founder & Strategy Lead</h3>
+          <p>Built a boutique digital marketing agency from the ground up, delivering content strategy, paid social, and influencer campaigns for SMEs across multiple industries. Managed full client lifecycle from pitch to retention.</p>
+          <div class="tags">
+            <span class="tag">Agency Founding</span>
+            <span class="tag">Paid Social</span>
+            <span class="tag">Client Strategy</span>
+            <span class="tag">Content Workflows</span>
           </div>
         </article>
 
-        <article class="entry">
-          <div class="entry-left">
+        <article class="exp">
+          <div class="exp-top">
             <span class="company">Assam Wood and Allied Products</span>
-            <div class="period">Jul 2024 – Dec 2024</div>
+            <span class="period">Jul 2024 – Dec 2024</span>
           </div>
-          <div>
-            <h3 class="role">Operations, Sustainability & Accounts Intern</h3>
-            <p>Led workflow optimisation initiatives, contributing to a 20% improvement in operational efficiency across cross-functional teams. Conducted sustainability assessments and prepared financial reports.</p>
-            <div class="tags">
-              <span class="tag">Operations</span>
-              <span class="tag">Sustainability</span>
-              <span class="tag">Financial Analysis</span>
-            </div>
+          <h3 class="role">Operations, Sustainability & Accounts Intern</h3>
+          <p>Led workflow optimisation initiatives, contributing to a 20% improvement in operational efficiency across cross-functional teams. Conducted sustainability assessments and prepared financial reports.</p>
+          <div class="tags">
+            <span class="tag">Operations</span>
+            <span class="tag">Sustainability</span>
+            <span class="tag">Financial Analysis</span>
           </div>
         </article>
 
-        <article class="entry">
-          <div class="entry-left">
+        <article class="exp">
+          <div class="exp-top">
             <span class="company">Silver Fern Education Consultants</span>
-            <div class="period">Jun – Sep 2025</div>
+            <span class="period">Jun – Sep 2025</span>
           </div>
-          <div>
-            <h3 class="role">Marketing & Content Intern</h3>
-            <p>Authored 10+ SEO-optimised blogs and 30+ social media posts across Instagram and Facebook. Analysed platform analytics to align content strategy with audience behaviour and business goals.</p>
-            <div class="tags">
-              <span class="tag">SEO Writing</span>
-              <span class="tag">Social Media</span>
-              <span class="tag">Analytics</span>
-            </div>
+          <h3 class="role">Marketing & Content Intern</h3>
+          <p>Authored 10+ SEO-optimised blogs and 30+ social media posts across Instagram and Facebook. Analysed platform analytics to align content strategy with audience behaviour and business goals.</p>
+          <div class="tags">
+            <span class="tag">SEO Writing</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Analytics</span>
           </div>
         </article>
 
-        <article class="entry">
-          <div class="entry-left">
+        <article class="exp">
+          <div class="exp-top">
             <span class="company">YouVah</span>
-            <div class="period">Apr – Jun 2024</div>
+            <span class="period">Apr – Jun 2024</span>
           </div>
-          <div>
-            <h3 class="role">Social Media Marketing Intern</h3>
-            <p>Developed platform-specific content strategies across Instagram, LinkedIn, and Twitter. Monitored campaign analytics and compiled performance summaries to drive ongoing optimisation.</p>
-            <div class="tags">
-              <span class="tag">Instagram</span>
-              <span class="tag">LinkedIn</span>
-              <span class="tag">Campaign Analytics</span>
-            </div>
+          <h3 class="role">Social Media Marketing Intern</h3>
+          <p>Developed platform-specific content strategies across Instagram, LinkedIn, and Twitter. Monitored campaign analytics and compiled performance summaries to drive ongoing optimisation.</p>
+          <div class="tags">
+            <span class="tag">Instagram</span>
+            <span class="tag">LinkedIn</span>
+            <span class="tag">Campaign Analytics</span>
           </div>
         </article>
-
       </div>
     </section>
 
     <section id="work" class="section">
-      <div class="section-head">
-        <div class="section-index">03 /</div>
-        <h2 class="section-title">Selected Work</h2>
-      </div>
-
+      <h2 class="section-title">Selected Work</h2>
       <div class="work-grid reveal">
-        <article class="work">
+        <div class="work-card">
           <div>
-            <small>Feature</small>
-            <h3>Escalate</h3>
+            <h4>Escalate</h4>
             <p>Social Content Strategy</p>
           </div>
-          <div class="link">View Story ↗</div>
-        </article>
+          <div class="arrow">↗</div>
+        </div>
 
-        <a class="work" href="https://thesfedu.com/our-blog/4/" target="_blank" rel="noopener noreferrer">
+        <a class="work-card" href="https://thesfedu.com/our-blog/4/" target="_blank" rel="noopener noreferrer">
           <div>
-            <small>Published</small>
-            <h3>SEO Content</h3>
+            <h4>SEO Content</h4>
             <p>Educational Blogs</p>
           </div>
-          <div class="link">Read Articles ↗</div>
+          <div class="arrow">↗</div>
         </a>
 
-        <article class="work">
+        <div class="work-card">
           <div>
-            <small>Campaign</small>
-            <h3>Canva</h3>
+            <h4>Canva</h4>
             <p>Brand Activation</p>
           </div>
-          <div class="link">View Highlights ↗</div>
-        </article>
+          <div class="arrow">↗</div>
+        </div>
       </div>
     </section>
 
     <section id="skills" class="section">
-      <div class="section-head">
-        <div class="section-index">04 /</div>
-        <h2 class="section-title">Core Skills</h2>
-      </div>
-
-      <div class="skills reveal">
-        <div class="skill">
+      <h2 class="section-title">Core Skills</h2>
+      <div class="skill-grid reveal">
+        <div class="skill-card">
           <h4>Brand & Marketing</h4>
           <ul>
             <li>Brand Positioning</li>
@@ -675,8 +769,7 @@
             <li>Brand Storytelling</li>
           </ul>
         </div>
-
-        <div class="skill">
+        <div class="skill-card">
           <h4>Digital & Content</h4>
           <ul>
             <li>SEO Writing</li>
@@ -687,8 +780,7 @@
             <li>Analytics</li>
           </ul>
         </div>
-
-        <div class="skill">
+        <div class="skill-card">
           <h4>Sales & Consultancy</h4>
           <ul>
             <li>Client Acquisition</li>
@@ -698,8 +790,7 @@
             <li>Client Pitching</li>
           </ul>
         </div>
-
-        <div class="skill">
+        <div class="skill-card">
           <h4>Operations & Strategy</h4>
           <ul>
             <li>Operations Management</li>
@@ -708,8 +799,7 @@
             <li>Workflow Optimization</li>
           </ul>
         </div>
-
-        <div class="skill">
+        <div class="skill-card">
           <h4>Tools & Platforms</h4>
           <ul>
             <li>Excel</li>
@@ -718,8 +808,7 @@
             <li>Canva</li>
           </ul>
         </div>
-
-        <div class="skill">
+        <div class="skill-card">
           <h4>Languages</h4>
           <ul>
             <li>English (Fluent)</li>
@@ -731,22 +820,18 @@
     </section>
 
     <section id="contact" class="section">
-      <div class="section-head">
-        <div class="section-index">05 /</div>
-        <h2 class="section-title">Contact</h2>
-      </div>
-
-      <div class="contact reveal">
-        <div class="contact-left">
-          <h3>Let’s Create<br/><span>Something Distinct</span></h3>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact">
+        <div class="contact-left glass reveal">
+          <h3>Let's <span>collaborate</span> and create something amazing.</h3>
           <p>
-            Open to opportunities in strategy, brand marketing, and growth.
-            If you have a role, project, or collaboration in mind, I’d love to connect.
+            I’m always open to opportunities in strategy, brand marketing, and growth.
+            If you have a project, role, or collaboration in mind — I’d love to chat.
           </p>
         </div>
 
-        <div class="links">
-          <a class="c-link" href="mailto:ruhanibajaj1@gmail.com?body=Hola%20Ruhani!">
+        <div class="contact-right glass reveal">
+          <a class="contact-link" href="mailto:ruhanibajaj1@gmail.com?body=Hola%20Ruhani!">
             <div>
               <small>Email</small>
               <strong>ruhanibajaj1@gmail.com</strong>
@@ -754,7 +839,7 @@
             <span>↗</span>
           </a>
 
-          <a class="c-link" href="https://www.linkedin.com/in/ruhani-bajaj-rb" target="_blank" rel="noopener noreferrer">
+          <a class="contact-link" href="https://www.linkedin.com/in/ruhani-bajaj-rb" target="_blank" rel="noopener noreferrer">
             <div>
               <small>LinkedIn</small>
               <strong>ruhani-bajaj-rb</strong>
@@ -762,7 +847,7 @@
             <span>↗</span>
           </a>
 
-          <a class="c-link" href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" rel="noopener noreferrer">
+          <a class="contact-link" href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" rel="noopener noreferrer">
             <div>
               <small>Agency Website</small>
               <strong>escalate.co.in</strong>
@@ -776,21 +861,31 @@
     <footer>
       © 2026 Ruhani Bajaj • Strategy × Marketing × Operations • Birmingham, United Kingdom
     </footer>
-
-  </main>
+  </div>
 
   <script>
-    // reveal animation
-    const obs = new IntersectionObserver((entries)=>{
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
           e.target.classList.add('show');
-          obs.unobserve(e.target);
+          observer.unobserve(e.target);
         }
-      })
-    },{threshold:.14});
+      });
+    },{threshold:.15});
 
-    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // tiny parallax for blobs
+    const blobs = document.querySelectorAll('.bg-blob');
+    window.addEventListener('mousemove', (e)=>{
+      const x = (e.clientX / window.innerWidth - .5);
+      const y = (e.clientY / window.innerHeight - .5);
+      blobs.forEach((b, i)=>{
+        const factor = (i+1) * 8;
+        b.style.transform = `translate(${x*factor}px, ${y*factor}px)`;
+      });
+    }, {passive:true});
   </script>
 </body>
 </html>
