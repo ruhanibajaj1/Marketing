@@ -4,11 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ruhani Bajaj — Strategy × Marketing × Operations</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -19,10 +16,10 @@
       --card: rgba(255,255,255,0.68);
       --stroke: rgba(123, 97, 255, 0.18);
 
-      --primary: #7b61ff;
-      --secondary: #00c2ff;
-      --accent: #ff6b6b;
-      --accent-2: #ffb347;
+      --primary: #7b61ff;     /* violet */
+      --secondary: #00c2ff;   /* cyan */
+      --accent: #ff6b6b;      /* coral */
+      --accent-2: #ffb347;    /* warm amber */
 
       --shadow: 0 20px 50px rgba(85, 102, 173, 0.16);
       --radius-xl: 24px;
@@ -45,6 +42,7 @@
       overflow-x:hidden;
     }
 
+    /* Animated soft blobs */
     .bg-blob{
       position:fixed;
       border-radius:50%;
@@ -65,6 +63,7 @@
       75%{ transform: translate(16px,12px) scale(1.02);}
     }
 
+    /* Subtle moving grid overlay */
     .grid-overlay{
       position:fixed;
       inset:0;
@@ -89,6 +88,7 @@
       z-index:2;
     }
 
+    /* NAV */
     .nav-wrap{
       position:sticky;
       top:16px;
@@ -135,6 +135,7 @@
       transform:translateY(-2px);
     }
 
+    /* HERO */
     .hero{
       padding:88px 0 36px;
       display:grid;
@@ -283,12 +284,15 @@
       border-radius: var(--radius-xl);
     }
 
+    /* ABOUT */
     .about-wrap{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
       gap:20px;
     }
-    .about-content{ padding:22px; }
+    .about-content{
+      padding:22px;
+    }
     .about-content h3{
       font-family:'Clash Display',sans-serif;
       font-size:1.75rem;
@@ -333,7 +337,11 @@
       font-weight:700;
     }
 
-    .timeline{ display:grid; gap:12px; }
+    /* EXPERIENCE */
+    .timeline{
+      display:grid;
+      gap:12px;
+    }
     .exp{
       padding:18px;
       border-radius:16px;
@@ -383,6 +391,7 @@
       padding:7px 11px;
     }
 
+    /* WORK */
     .work-grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -415,8 +424,12 @@
       transform:translate(0,0);
       transition:.3s ease;
     }
-    .work-card:hover{ transform:translateY(-6px); }
-    .work-card:hover::before{ transform:translate(-18px,14px); }
+    .work-card:hover{
+      transform:translateY(-6px);
+    }
+    .work-card:hover::before{
+      transform:translate(-18px,14px);
+    }
     .work-card h4{
       font-family:'Clash Display',sans-serif;
       font-size:1.35rem;
@@ -439,6 +452,7 @@
       align-self:flex-end;
     }
 
+    /* SKILLS */
     .skill-grid{
       display:grid;
       grid-template-columns: repeat(3,1fr);
@@ -457,7 +471,11 @@
       margin-bottom:10px;
       color:var(--primary);
     }
-    .skill-card ul{ list-style:none; display:grid; gap:7px; }
+    .skill-card ul{
+      list-style:none;
+      display:grid;
+      gap:7px;
+    }
     .skill-card li{
       font-size:.92rem;
       color:#465073;
@@ -472,12 +490,15 @@
       font-weight:800;
     }
 
+    /* CONTACT */
     .contact{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
       gap:14px;
     }
-    .contact-left{ padding:22px; }
+    .contact-left{
+      padding:22px;
+    }
     .contact-left h3{
       font-family:'Clash Display',sans-serif;
       font-size:clamp(1.9rem,4vw,3.2rem);
@@ -537,221 +558,17 @@
       font-weight:700;
     }
 
+    /* reveal */
     .reveal{ opacity:0; transform:translateY(16px); transition:.6s ease; }
     .reveal.show{ opacity:1; transform:translateY(0); }
 
-    /* CV block shell */
-    .cv-shell{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.75);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius-xl);
-      padding:16px;
-    }
-
-    /* Resume styles */
-    .resume {
-      --paper: #FBF9F4;
-      --ink: #161513;
-      --accent-res: #5B4EFF;
-      --accent-soft: #EDEBFF;
-      --stone: #8A8578;
-      --line: #E8E4D9;
-
-      font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--ink);
-      background: var(--paper);
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 64px 40px 80px;
-      line-height: 1.55;
-      border-radius: 16px;
-    }
-
-    .resume * { box-sizing: border-box; }
-
-    .resume h1, .resume h2, .resume h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin: 0;
-    }
-
-    .resume__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding-bottom: 28px;
-      border-bottom: 2px solid var(--ink);
-      margin-bottom: 36px;
-    }
-
-    .resume__name {
-      font-size: clamp(2rem, 5vw, 2.75rem);
-      line-height: 1.05;
-    }
-
-    .resume__tagline {
-      color: var(--stone);
-      font-size: 0.95rem;
-      margin-top: 8px;
-      max-width: 46ch;
-    }
-
-    .resume__contact {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.85rem;
-      text-align: right;
-    }
-
-    .resume__contact a {
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--line);
-      width: fit-content;
-      align-self: flex-end;
-    }
-
-    .resume__contact a:hover,
-    .resume__contact a:focus-visible {
-      border-bottom-color: var(--accent-res);
-      color: var(--accent-res);
-    }
-
-    .resume__section { margin-bottom: 40px; }
-
-    .resume__section-head {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .resume__section-head h2 {
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-res);
-    }
-
-    .resume__section-head::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-    }
-
-    .resume__summary {
-      font-size: 1rem;
-      max-width: 68ch;
-      color: #2b2924;
-    }
-
-    .resume__entry {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4px 16px;
-      margin-bottom: 26px;
-    }
-
-    .resume__entry:last-child { margin-bottom: 0; }
-
-    .resume__role {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 1.02rem;
-    }
-
-    .resume__org {
-      color: var(--stone);
-      font-weight: 500;
-    }
-
-    .resume__dates {
-      font-size: 0.8rem;
-      color: var(--stone);
-      white-space: nowrap;
-      align-self: start;
-      padding-top: 3px;
-    }
-
-    .resume__tag {
-      display: inline-block;
-      background: var(--accent-soft);
-      color: var(--accent-res);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 100px;
-      margin: 6px 0 10px;
-    }
-
-    .resume__bullets {
-      grid-column: 1 / -1;
-      margin: 0;
-      padding-left: 18px;
-      color: #2b2924;
-      font-size: 0.92rem;
-    }
-
-    .resume__bullets li { margin-bottom: 5px; }
-    .resume__bullets li::marker { color: var(--accent-res); }
-
-    .resume__edu-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .resume__edu-item:last-child { border-bottom: none; }
-
-    .resume__edu-degree { font-weight: 600; }
-    .resume__edu-school { color: var(--stone); font-size: 0.88rem; }
-    .resume__edu-dates {
-      color: var(--stone);
-      font-size: 0.8rem;
-      white-space: nowrap;
-    }
-
-    .resume__skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px 32px;
-    }
-
-    .resume__skill-group h3 {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .resume__skill-group p {
-      margin: 0;
-      font-size: 0.88rem;
-      color: var(--stone);
-    }
-
-    .resume__footer {
-      margin-top: 44px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      font-size: 0.82rem;
-      color: var(--stone);
-    }
-
     @media (max-width: 1024px){
-      .hero, .about-wrap, .contact{ grid-template-columns:1fr; }
-      .skill-grid{ grid-template-columns: repeat(2,1fr); }
+      .hero, .about-wrap, .contact{
+        grid-template-columns:1fr;
+      }
+      .skill-grid{
+        grid-template-columns: repeat(2,1fr);
+      }
     }
     @media (max-width: 760px){
       .nav-links{ display:none; }
@@ -759,18 +576,6 @@
       .work-grid{ grid-template-columns:1fr; }
       .skill-grid{ grid-template-columns:1fr; }
       .stats{ grid-template-columns:1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .resume { padding: 40px 20px 60px; }
-      .resume__header { flex-direction: column; align-items: flex-start; }
-      .resume__contact { text-align: left; }
-      .resume__contact a { align-self: flex-start; }
-      .resume__entry { grid-template-columns: 1fr; }
-      .resume__dates { padding-top: 0; }
-    }
-
-    @media print {
-      .resume { background: #fff; padding: 0; }
     }
   </style>
 </head>
@@ -791,7 +596,6 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="#cv">CV</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -811,7 +615,7 @@
         </p>
         <div class="hero-btns">
           <a class="btn btn-primary" href="#contact">Let's Create ↓</a>
-          <a class="btn btn-ghost" href="#cv">📄 View CV</a>
+          <a class="btn btn-ghost" href="https://docs.google.com/document/d/1z1w-Ej11g6euYoNCkfZYDPZLMKTQBctS2K5xFl9xdz0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">📄 Download Resume</a>
         </div>
       </div>
 
@@ -851,4 +655,237 @@
       <h2 class="section-title">Professional Journey</h2>
       <div class="timeline reveal">
         <article class="exp">
-          <div class="
+          <div class="exp-top">
+            <span class="company">Canva</span>
+            <span class="period">Mar 2026 – Present</span>
+          </div>
+          <h3 class="role">Brand Ambassador</h3>
+          <p>Selected as a Gen C Canva Ambassador at the University of Birmingham — running activations, demos, and community initiatives. Providing structured product feedback directly to the Canva team.</p>
+          <div class="tags">
+            <span class="tag">Brand Representation</span>
+            <span class="tag">Community Building</span>
+            <span class="tag">Product Feedback</span>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp-top">
+            <span class="company">Escalate — Social Media Agency</span>
+            <span class="period">2023 – Present</span>
+          </div>
+          <h3 class="role">Co-Founder & Strategy Lead</h3>
+          <p>Built a boutique digital marketing agency from the ground up, delivering content strategy, paid social, and influencer campaigns for SMEs across multiple industries. Managed full client lifecycle from pitch to retention.</p>
+          <div class="tags">
+            <span class="tag">Agency Founding</span>
+            <span class="tag">Paid Social</span>
+            <span class="tag">Client Strategy</span>
+            <span class="tag">Content Workflows</span>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp-top">
+            <span class="company">Assam Wood and Allied Products</span>
+            <span class="period">Jul 2024 – Dec 2024</span>
+          </div>
+          <h3 class="role">Operations, Sustainability & Accounts Intern</h3>
+          <p>Led workflow optimisation initiatives, contributing to a 20% improvement in operational efficiency across cross-functional teams. Conducted sustainability assessments and prepared financial reports.</p>
+          <div class="tags">
+            <span class="tag">Operations</span>
+            <span class="tag">Sustainability</span>
+            <span class="tag">Financial Analysis</span>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp-top">
+            <span class="company">Silver Fern Education Consultants</span>
+            <span class="period">Jun – Sep 2025</span>
+          </div>
+          <h3 class="role">Marketing & Content Intern</h3>
+          <p>Authored 10+ SEO-optimised blogs and 30+ social media posts across Instagram and Facebook. Analysed platform analytics to align content strategy with audience behaviour and business goals.</p>
+          <div class="tags">
+            <span class="tag">SEO Writing</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Analytics</span>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp-top">
+            <span class="company">YouVah</span>
+            <span class="period">Apr – Jun 2024</span>
+          </div>
+          <h3 class="role">Social Media Marketing Intern</h3>
+          <p>Developed platform-specific content strategies across Instagram, LinkedIn, and Twitter. Monitored campaign analytics and compiled performance summaries to drive ongoing optimisation.</p>
+          <div class="tags">
+            <span class="tag">Instagram</span>
+            <span class="tag">LinkedIn</span>
+            <span class="tag">Campaign Analytics</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <h2 class="section-title">Selected Work</h2>
+      <div class="work-grid reveal">
+        <div class="work-card">
+          <div>
+            <h4>Escalate</h4>
+            <p>Social Content Strategy</p>
+          </div>
+          <div class="arrow">↗</div>
+        </div>
+
+        <a class="work-card" href="https://thesfedu.com/our-blog/4/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <h4>SEO Content</h4>
+            <p>Educational Blogs</p>
+          </div>
+          <div class="arrow">↗</div>
+        </a>
+
+        <div class="work-card">
+          <div>
+            <h4>Canva</h4>
+            <p>Brand Activation</p>
+          </div>
+          <div class="arrow">↗</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2 class="section-title">Core Skills</h2>
+      <div class="skill-grid reveal">
+        <div class="skill-card">
+          <h4>Brand & Marketing</h4>
+          <ul>
+            <li>Brand Positioning</li>
+            <li>Campaign Strategy</li>
+            <li>Consumer Insight</li>
+            <li>Growth Marketing</li>
+            <li>Brand Storytelling</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Digital & Content</h4>
+          <ul>
+            <li>SEO Writing</li>
+            <li>Social Media Strategy</li>
+            <li>Paid Social</li>
+            <li>Influencer Marketing</li>
+            <li>Content Calendars</li>
+            <li>Analytics</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Sales & Consultancy</h4>
+          <ul>
+            <li>Client Acquisition</li>
+            <li>Market Research</li>
+            <li>Competitive Analysis</li>
+            <li>Stakeholder Management</li>
+            <li>Client Pitching</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Operations & Strategy</h4>
+          <ul>
+            <li>Operations Management</li>
+            <li>Sustainability</li>
+            <li>Financial Analysis</li>
+            <li>Workflow Optimization</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Tools & Platforms</h4>
+          <ul>
+            <li>Excel</li>
+            <li>Google Analytics</li>
+            <li>Meta Business Suite</li>
+            <li>Canva</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Languages</h4>
+          <ul>
+            <li>English (Fluent)</li>
+            <li>Hindi (Fluent)</li>
+            <li>French (Basic)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact">
+        <div class="contact-left glass reveal">
+          <h3>Let's <span>collaborate</span> and create something amazing.</h3>
+          <p>
+            I’m always open to opportunities in strategy, brand marketing, and growth.
+            If you have a project, role, or collaboration in mind — I’d love to chat.
+          </p>
+        </div>
+
+        <div class="contact-right glass reveal">
+          <a class="contact-link" href="mailto:ruhanibajaj1@gmail.com?body=Hola%20Ruhani!">
+            <div>
+              <small>Email</small>
+              <strong>ruhanibajaj1@gmail.com</strong>
+            </div>
+            <span>↗</span>
+          </a>
+
+          <a class="contact-link" href="https://www.linkedin.com/in/ruhani-bajaj-rb" target="_blank" rel="noopener noreferrer">
+            <div>
+              <small>LinkedIn</small>
+              <strong>ruhani-bajaj-rb</strong>
+            </div>
+            <span>↗</span>
+          </a>
+
+          <a class="contact-link" href="https://ruhanibajaj1.wixsite.com/mysite" target="_blank" rel="noopener noreferrer">
+            <div>
+              <small>Agency Website</small>
+              <strong>escalate.co.in</strong>
+            </div>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Ruhani Bajaj • Strategy × Marketing × Operations • Birmingham, United Kingdom
+    </footer>
+  </div>
+
+  <script>
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          observer.unobserve(e.target);
+        }
+      });
+    },{threshold:.15});
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // tiny parallax for blobs
+    const blobs = document.querySelectorAll('.bg-blob');
+    window.addEventListener('mousemove', (e)=>{
+      const x = (e.clientX / window.innerWidth - .5);
+      const y = (e.clientY / window.innerHeight - .5);
+      blobs.forEach((b, i)=>{
+        const factor = (i+1) * 8;
+        b.style.transform = `translate(${x*factor}px, ${y*factor}px)`;
+      });
+    }, {passive:true});
+  </script>
+</body>
+</html>
